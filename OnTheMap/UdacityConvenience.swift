@@ -9,9 +9,9 @@
 import UIKit
 import Foundation
 
-// MARK: - OTMClient (Convenient Resource Methods)
+// MARK: - UdacityClient (Convenient Resource Methods)
 
-extension OTMClient {
+extension UdacityClient {
     
     func getSessionID(username: String, password: String, completionHandler: (success: Bool, sessionID: String?, errorString: String?) -> Void) {
 
@@ -28,16 +28,16 @@ extension OTMClient {
                     print("error: ", error)
                     completionHandler(success: false, sessionID: nil, errorString: "Login Failed (SessionID).")
                 } else {
-                    if let session = JSONResult[OTMClient.JSONResponseKeys.Session] as? NSDictionary {
-                        if let id = session[OTMClient.JSONResponseKeys.id] as? String {
+                    if let session = JSONResult[UdacityClient.JSONResponseKeys.Session] as? NSDictionary {
+                        if let id = session[UdacityClient.JSONResponseKeys.id] as? String {
                             self.sessionID = id
                             completionHandler(success: true, sessionID: id, errorString: nil)
                         } else {
-                            print("Could not find \(OTMClient.JSONResponseKeys.id) in \(JSONResult)")
+                            print("Could not find \(UdacityClient.JSONResponseKeys.id) in \(JSONResult)")
                             completionHandler(success: false, sessionID: nil, errorString: "Login Failed (SessionID).")
                         }
                     } else {
-                        print("Could not find \(OTMClient.JSONResponseKeys.Session) in \(JSONResult)")
+                        print("Could not find \(UdacityClient.JSONResponseKeys.Session) in \(JSONResult)")
                         completionHandler(success: false, sessionID: nil, errorString: "Login Failed (SessionID).")
                     }
                 }
@@ -48,7 +48,7 @@ extension OTMClient {
     /* This function opens a WebView to handle the signUp */
     func signUp(hostViewController: UIViewController, completionHandler: (success: Bool, errorString: String?) -> Void) {
         
-        let authorizationURL = NSURL(string: "\(OTMClient.Constants.AuthorizationURL)")
+        let authorizationURL = NSURL(string: "\(UdacityClient.Constants.AuthorizationURL)")
         let request = NSURLRequest(URL: authorizationURL!)
         let webAuthViewController = hostViewController.storyboard!.instantiateViewControllerWithIdentifier("WebAuthViewController") as! WebAuthViewController
         webAuthViewController.urlRequest = request

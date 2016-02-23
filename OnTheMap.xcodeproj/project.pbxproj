@@ -14,10 +14,14 @@
 		325710711C7963A30009A0BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3257106F1C7963A30009A0BE /* LaunchScreen.storyboard */; };
 		3257107C1C7963A30009A0BE /* OnTheMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3257107B1C7963A30009A0BE /* OnTheMapTests.swift */; };
 		325710871C7963A30009A0BE /* OnTheMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325710861C7963A30009A0BE /* OnTheMapUITests.swift */; };
-		32B3B0E31C7A99FF00E3D250 /* OTMClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3B0E01C7A99FF00E3D250 /* OTMClient.swift */; };
+		32B3B0E31C7A99FF00E3D250 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3B0E01C7A99FF00E3D250 /* UdacityClient.swift */; };
 		32B3B0E41C7A99FF00E3D250 /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3B0E11C7A99FF00E3D250 /* UdacityConstants.swift */; };
 		32B3B0E51C7A99FF00E3D250 /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3B0E21C7A99FF00E3D250 /* UdacityConvenience.swift */; };
 		32B3B0E71C7BD48700E3D250 /* WebAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3B0E61C7BD48700E3D250 /* WebAuthViewController.swift */; };
+		32B3B0ED1C7C05A500E3D250 /* ParseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3B0EC1C7C05A500E3D250 /* ParseTableViewController.swift */; };
+		32B3B0F11C7C08EF00E3D250 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3B0F01C7C08EF00E3D250 /* ParseClient.swift */; };
+		32B3B0F31C7C099400E3D250 /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3B0F21C7C099400E3D250 /* ParseConvenience.swift */; };
+		32B3B0F51C7C09DB00E3D250 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3B0F41C7C09DB00E3D250 /* ParseConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,10 +55,14 @@
 		325710821C7963A30009A0BE /* OnTheMapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnTheMapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		325710861C7963A30009A0BE /* OnTheMapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapUITests.swift; sourceTree = "<group>"; };
 		325710881C7963A30009A0BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		32B3B0E01C7A99FF00E3D250 /* OTMClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTMClient.swift; sourceTree = "<group>"; };
+		32B3B0E01C7A99FF00E3D250 /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		32B3B0E11C7A99FF00E3D250 /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
 		32B3B0E21C7A99FF00E3D250 /* UdacityConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConvenience.swift; sourceTree = "<group>"; };
 		32B3B0E61C7BD48700E3D250 /* WebAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebAuthViewController.swift; sourceTree = "<group>"; };
+		32B3B0EC1C7C05A500E3D250 /* ParseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseTableViewController.swift; sourceTree = "<group>"; };
+		32B3B0F01C7C08EF00E3D250 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
+		32B3B0F21C7C099400E3D250 /* ParseConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConvenience.swift; sourceTree = "<group>"; };
+		32B3B0F41C7C09DB00E3D250 /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +147,7 @@
 			children = (
 				325710681C7963A30009A0BE /* LoginViewController.swift */,
 				32B3B0E61C7BD48700E3D250 /* WebAuthViewController.swift */,
+				32B3B0EC1C7C05A500E3D250 /* ParseTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -162,9 +171,12 @@
 		32B3B0EB1C7BE7D700E3D250 /* OTM */ = {
 			isa = PBXGroup;
 			children = (
-				32B3B0E01C7A99FF00E3D250 /* OTMClient.swift */,
+				32B3B0E01C7A99FF00E3D250 /* UdacityClient.swift */,
 				32B3B0E21C7A99FF00E3D250 /* UdacityConvenience.swift */,
 				32B3B0E11C7A99FF00E3D250 /* UdacityConstants.swift */,
+				32B3B0F01C7C08EF00E3D250 /* ParseClient.swift */,
+				32B3B0F21C7C099400E3D250 /* ParseConvenience.swift */,
+				32B3B0F41C7C09DB00E3D250 /* ParseConstants.swift */,
 			);
 			name = OTM;
 			sourceTree = "<group>";
@@ -300,11 +312,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32B3B0ED1C7C05A500E3D250 /* ParseTableViewController.swift in Sources */,
 				32B3B0E51C7A99FF00E3D250 /* UdacityConvenience.swift in Sources */,
-				32B3B0E31C7A99FF00E3D250 /* OTMClient.swift in Sources */,
+				32B3B0E31C7A99FF00E3D250 /* UdacityClient.swift in Sources */,
+				32B3B0F51C7C09DB00E3D250 /* ParseConstants.swift in Sources */,
 				325710691C7963A30009A0BE /* LoginViewController.swift in Sources */,
 				32B3B0E41C7A99FF00E3D250 /* UdacityConstants.swift in Sources */,
 				325710671C7963A30009A0BE /* AppDelegate.swift in Sources */,
+				32B3B0F11C7C08EF00E3D250 /* ParseClient.swift in Sources */,
+				32B3B0F31C7C099400E3D250 /* ParseConvenience.swift in Sources */,
 				32B3B0E71C7BD48700E3D250 /* WebAuthViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

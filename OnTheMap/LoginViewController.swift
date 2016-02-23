@@ -17,9 +17,10 @@ class LoginViewController: UIViewController {
     @IBAction func loginButton(sender: AnyObject) {
         let username = self.usernameTextField!.text!
         let password = self.passwordTextField!.text!
-        OTMClient.sharedInstance().getSessionID(username, password: password) { (success, sessionID, errorString) in
+        
+        UdacityClient.sharedInstance().getSessionID(username, password: password) { (success, sessionID, errorString) in
                 if success {
-                    print("sessionID: ", OTMClient.sharedInstance().sessionID!)
+                    print("sessionID: ", UdacityClient.sharedInstance().sessionID!)
                 } else {
                     print("errorString: ", errorString)
                 }
@@ -27,7 +28,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signUpButton(sender: UIButton) {
-        OTMClient.sharedInstance().signUp(self) { (success, errorString) in
+        UdacityClient.sharedInstance().signUp(self) { (success, errorString) in
             if success {
                 print("success: ", success)
             } else {

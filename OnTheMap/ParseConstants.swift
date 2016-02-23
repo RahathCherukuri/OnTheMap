@@ -1,14 +1,15 @@
 //
-//  UdacityConstants.swift
+//  ParseConstants.swift
 //  OnTheMap
 //
-//  Created by Rahath cherukuri on 2/20/16.
+//  Created by Rahath cherukuri on 2/22/16.
 //  Copyright © 2016 Rahath cherukuri. All rights reserved.
 //
 
-// MARK: - UdacityClient (Constants)
 
-extension UdacityClient {
+// MARK: - ParseClient (Constants)
+
+extension ParseClient {
     
     // MARK: Constants
     struct Constants {
@@ -44,10 +45,10 @@ extension UdacityClient {
         static let Password = "password"
         
     }
-
+    
     // MARK: JSON Response Keys
     struct JSONResponseKeys {
-      
+        
         // MARK: General
         static let StatusMessage = "status_message"
         static let StatusCode = "status_code"
@@ -56,5 +57,5 @@ extension UdacityClient {
         static let Session = "session"
         static let id = "id"
     }
-
+    
 }

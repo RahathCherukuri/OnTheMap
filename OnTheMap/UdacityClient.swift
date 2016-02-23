@@ -1,5 +1,5 @@
 //
-//  OTMClient.swift
+//  UdacityClient.swift
 //  OnTheMap
 //
 //  Created by Rahath cherukuri on 2/20/16.
@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: UdacityClient: NSObject
 
-class OTMClient : NSObject {
+class UdacityClient : NSObject {
     
     // MARK: Properties
     
@@ -38,7 +38,7 @@ class OTMClient : NSObject {
         let mutableParameters = parameters
         
         /* 2/3. Build the URL and configure the request */
-        let urlString = Constants.BaseURLSecure + method + OTMClient.escapedParameters(mutableParameters)
+        let urlString = Constants.BaseURLSecure + method + UdacityClient.escapedParameters(mutableParameters)
         let url = NSURL(string: urlString)!
         let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "POST"
@@ -85,7 +85,7 @@ class OTMClient : NSObject {
             
             let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
             /* 5/6. Parse the data and use the data (happens in completion handler) */
-            OTMClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
+            UdacityClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
         }
         
         /* 7. Start the request */
@@ -142,10 +142,10 @@ class OTMClient : NSObject {
     
     // MARK: Shared Instance
     
-    class func sharedInstance() -> OTMClient {
+    class func sharedInstance() -> UdacityClient {
         
         struct Singleton {
-            static var sharedInstance = OTMClient()
+            static var sharedInstance = UdacityClient()
         }
         
         return Singleton.sharedInstance
