@@ -17,11 +17,9 @@ class LoginViewController: UIViewController {
     @IBAction func loginButton(sender: AnyObject) {
         let username = self.usernameTextField!.text!
         let password = self.passwordTextField!.text!
-        
-        TMDBClient.sharedInstance().getSessionID(username, password: password) { (success, sessionID, errorString) in
+        OTMClient.sharedInstance().getSessionID(username, password: password) { (success, sessionID, errorString) in
                 if success {
-                    print("sessionID: ", TMDBClient.sharedInstance().sessionID!)
-                    
+                    print("sessionID: ", OTMClient.sharedInstance().sessionID!)
                 } else {
                     print("errorString: ", errorString)
                 }
@@ -29,7 +27,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signUpButton(sender: UIButton) {
-        TMDBClient.sharedInstance().signUp(self) { (success, errorString) in
+        OTMClient.sharedInstance().signUp(self) { (success, errorString) in
             if success {
                 print("success: ", success)
             } else {

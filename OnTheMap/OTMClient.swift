@@ -1,5 +1,5 @@
 //
-//  TMDBClient.swift
+//  OTMClient.swift
 //  OnTheMap
 //
 //  Created by Rahath cherukuri on 2/20/16.
@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: UdacityClient: NSObject
 
-class TMDBClient : NSObject {
+class OTMClient : NSObject {
     
     // MARK: Properties
     
@@ -29,103 +29,6 @@ class TMDBClient : NSObject {
         session = NSURLSession.sharedSession()
         super.init()
     }
-    
-    // MARK: GET
-//    
-//    func taskForGETImage(size: String, filePath: String, completionHandler: (imageData: NSData?, error: NSError?) ->  Void) -> NSURLSessionTask {
-//        
-//        /* 1. Set the parameters */
-//        // There are none...
-//        
-//        /* 2/3. Build the URL and configure the request */
-////        let baseURL = NSURL(string: config.baseImageURLString)!
-//        let url = baseURL.URLByAppendingPathComponent(size).URLByAppendingPathComponent(filePath)
-//        let request = NSURLRequest(URL: url)
-//        
-//        /* 4. Make the request */
-//        let task = session.dataTaskWithRequest(request) { (data, response, error) in
-//            
-//            /* GUARD: Was there an error? */
-//            guard (error == nil) else {
-//                print("There was an error with your request: \(error)")
-//                return
-//            }
-//            
-//            /* GUARD: Did we get a successful 2XX response? */
-//            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
-//                if let response = response as? NSHTTPURLResponse {
-//                    print("Your request returned an invalid response! Status code: \(response.statusCode)!")
-//                } else if let response = response {
-//                    print("Your request returned an invalid response! Response: \(response)!")
-//                } else {
-//                    print("Your request returned an invalid response!")
-//                }
-//                return
-//            }
-//            
-//            /* GUARD: Was there any data returned? */
-//            guard let data = data else {
-//                print("No data was returned by the request!")
-//                return
-//            }
-//            
-//            /* 5/6. Parse the data and use the data (happens in completion handler) */
-//            completionHandler(imageData: data, error: nil)
-//        }
-//        
-//        /* 7. Start the request */
-//        task.resume()
-//        
-//        return task
-//    }
-//    
-//    func taskForGETMethod(method: String, parameters: [String : AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
-//        
-//        /* 1. Set the parameters */
-//        var mutableParameters = parameters
-//        mutableParameters[ParameterKeys.ApiKey] = Constants.ApiKey
-//        
-//        /* 2/3. Build the URL and configure the request */
-//        let urlString = Constants.BaseURLSecure + method + TMDBClient.escapedParameters(mutableParameters)
-//        let url = NSURL(string: urlString)!
-//        let request = NSURLRequest(URL: url)
-//        
-//        /* 4. Make the request */
-//        let task = session.dataTaskWithRequest(request) { (data, response, error) in
-//            
-//            /* GUARD: Was there an error? */
-//            guard (error == nil) else {
-//                print("There was an error with your request: \(error)")
-//                return
-//            }
-//            
-//            /* GUARD: Did we get a successful 2XX response? */
-//            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
-//                if let response = response as? NSHTTPURLResponse {
-//                    print("Your request returned an invalid response! Status code: \(response.statusCode)!")
-//                } else if let response = response {
-//                    print("Your request returned an invalid response! Response: \(response)!")
-//                } else {
-//                    print("Your request returned an invalid response!")
-//                }
-//                return
-//            }
-//            
-//            /* GUARD: Was there any data returned? */
-//            guard let data = data else {
-//                print("No data was returned by the request!")
-//                return
-//            }
-//            
-//            /* 5/6. Parse the data and use the data (happens in completion handler) */
-//            TMDBClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
-//        }
-//        
-//        /* 7. Start the request */
-//        task.resume()
-//        
-//        return task
-//    }
 
     // MARK: POST
     
@@ -133,10 +36,9 @@ class TMDBClient : NSObject {
         
         /* 1. Set the parameters */
         let mutableParameters = parameters
-//        mutableParameters[ParameterKeys.ApiKey] = Constants.ApiKey
         
         /* 2/3. Build the URL and configure the request */
-        let urlString = Constants.BaseURLSecure + method + TMDBClient.escapedParameters(mutableParameters)
+        let urlString = Constants.BaseURLSecure + method + OTMClient.escapedParameters(mutableParameters)
         let url = NSURL(string: urlString)!
         let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "POST"
@@ -183,7 +85,7 @@ class TMDBClient : NSObject {
             
             let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
             /* 5/6. Parse the data and use the data (happens in completion handler) */
-            TMDBClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
+            OTMClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
         }
         
         /* 7. Start the request */
@@ -240,10 +142,10 @@ class TMDBClient : NSObject {
     
     // MARK: Shared Instance
     
-    class func sharedInstance() -> TMDBClient {
+    class func sharedInstance() -> OTMClient {
         
         struct Singleton {
-            static var sharedInstance = TMDBClient()
+            static var sharedInstance = OTMClient()
         }
         
         return Singleton.sharedInstance
