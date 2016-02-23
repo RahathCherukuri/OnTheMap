@@ -34,6 +34,13 @@
                                     <action selector="loginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JqP-z4-oBn"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CsE-go-mqa">
+                                <rect key="frame" x="49" y="520" width="520" height="30"/>
+                                <state key="normal" title="Signup"/>
+                                <connections>
+                                    <action selector="signUpButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="73Y-ev-mgg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -64,7 +71,40 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="214"/>
+            <point key="canvasLocation" x="155" y="-170"/>
+        </scene>
+        <!--Web Auth View Controller-->
+        <scene sceneID="e1T-1l-t7V">
+            <objects>
+                <viewController storyboardIdentifier="WebAuthViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9bF-Fv-2wZ" customClass="WebAuthViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mic-px-Im9"/>
+                        <viewControllerLayoutGuide type="bottom" id="Pr8-dF-tIy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SaM-8v-0Jr">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nn6-QI-zku">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Nn6-QI-zku" secondAttribute="trailing" id="7Bl-RM-r9x"/>
+                            <constraint firstItem="Nn6-QI-zku" firstAttribute="leading" secondItem="SaM-8v-0Jr" secondAttribute="leading" id="Q8q-He-kE0"/>
+                            <constraint firstItem="Nn6-QI-zku" firstAttribute="top" secondItem="mic-px-Im9" secondAttribute="bottom" id="ebL-1f-1l1"/>
+                            <constraint firstItem="Pr8-dF-tIy" firstAttribute="top" secondItem="Nn6-QI-zku" secondAttribute="bottom" id="vIE-bs-XFZ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="Nn6-QI-zku" id="9vf-hY-HPC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Oo-QD-bsq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="195" y="705"/>
         </scene>
     </scenes>
 </document>

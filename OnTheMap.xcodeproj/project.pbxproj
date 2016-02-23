@@ -14,6 +14,10 @@
 		325710711C7963A30009A0BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3257106F1C7963A30009A0BE /* LaunchScreen.storyboard */; };
 		3257107C1C7963A30009A0BE /* OnTheMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3257107B1C7963A30009A0BE /* OnTheMapTests.swift */; };
 		325710871C7963A30009A0BE /* OnTheMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325710861C7963A30009A0BE /* OnTheMapUITests.swift */; };
+		32B3B0E31C7A99FF00E3D250 /* TMDBClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3B0E01C7A99FF00E3D250 /* TMDBClient.swift */; };
+		32B3B0E41C7A99FF00E3D250 /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3B0E11C7A99FF00E3D250 /* UdacityConstants.swift */; };
+		32B3B0E51C7A99FF00E3D250 /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3B0E21C7A99FF00E3D250 /* UdacityConvenience.swift */; };
+		32B3B0E71C7BD48700E3D250 /* WebAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3B0E61C7BD48700E3D250 /* WebAuthViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		325710821C7963A30009A0BE /* OnTheMapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnTheMapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		325710861C7963A30009A0BE /* OnTheMapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapUITests.swift; sourceTree = "<group>"; };
 		325710881C7963A30009A0BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32B3B0E01C7A99FF00E3D250 /* TMDBClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMDBClient.swift; sourceTree = "<group>"; };
+		32B3B0E11C7A99FF00E3D250 /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
+		32B3B0E21C7A99FF00E3D250 /* UdacityConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConvenience.swift; sourceTree = "<group>"; };
+		32B3B0E61C7BD48700E3D250 /* WebAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebAuthViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +107,11 @@
 			children = (
 				325710661C7963A30009A0BE /* AppDelegate.swift */,
 				325710681C7963A30009A0BE /* LoginViewController.swift */,
+				32B3B0E01C7A99FF00E3D250 /* TMDBClient.swift */,
+				32B3B0E11C7A99FF00E3D250 /* UdacityConstants.swift */,
+				32B3B0E21C7A99FF00E3D250 /* UdacityConvenience.swift */,
 				3257106A1C7963A30009A0BE /* Main.storyboard */,
+				32B3B0E61C7BD48700E3D250 /* WebAuthViewController.swift */,
 				3257106D1C7963A30009A0BE /* Assets.xcassets */,
 				3257106F1C7963A30009A0BE /* LaunchScreen.storyboard */,
 				325710721C7963A30009A0BE /* Info.plist */,
@@ -256,8 +268,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32B3B0E51C7A99FF00E3D250 /* UdacityConvenience.swift in Sources */,
+				32B3B0E31C7A99FF00E3D250 /* TMDBClient.swift in Sources */,
 				325710691C7963A30009A0BE /* LoginViewController.swift in Sources */,
+				32B3B0E41C7A99FF00E3D250 /* UdacityConstants.swift in Sources */,
 				325710671C7963A30009A0BE /* AppDelegate.swift in Sources */,
+				32B3B0E71C7BD48700E3D250 /* WebAuthViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +500,7 @@
 				3257108D1C7963A30009A0BE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3257108E1C7963A30009A0BE /* Build configuration list for PBXNativeTarget "OnTheMapTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +509,7 @@
 				325710901C7963A30009A0BE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		325710911C7963A30009A0BE /* Build configuration list for PBXNativeTarget "OnTheMapUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +518,7 @@
 				325710931C7963A30009A0BE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
