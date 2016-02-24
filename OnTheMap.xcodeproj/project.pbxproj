@@ -22,6 +22,7 @@
 		32B3B0F11C7C08EF00E3D250 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3B0F01C7C08EF00E3D250 /* ParseClient.swift */; };
 		32B3B0F31C7C099400E3D250 /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3B0F21C7C099400E3D250 /* ParseConvenience.swift */; };
 		32B3B0F51C7C09DB00E3D250 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3B0F41C7C09DB00E3D250 /* ParseConstants.swift */; };
+		32B3B0F71C7D349D00E3D250 /* StudentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3B0F61C7D349D00E3D250 /* StudentInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		32B3B0F01C7C08EF00E3D250 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 		32B3B0F21C7C099400E3D250 /* ParseConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConvenience.swift; sourceTree = "<group>"; };
 		32B3B0F41C7C09DB00E3D250 /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
+		32B3B0F61C7D349D00E3D250 /* StudentInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +179,7 @@
 				32B3B0F01C7C08EF00E3D250 /* ParseClient.swift */,
 				32B3B0F21C7C099400E3D250 /* ParseConvenience.swift */,
 				32B3B0F41C7C09DB00E3D250 /* ParseConstants.swift */,
+				32B3B0F61C7D349D00E3D250 /* StudentInfo.swift */,
 			);
 			name = OTM;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				32B3B0E51C7A99FF00E3D250 /* UdacityConvenience.swift in Sources */,
 				32B3B0E31C7A99FF00E3D250 /* UdacityClient.swift in Sources */,
 				32B3B0F51C7C09DB00E3D250 /* ParseConstants.swift in Sources */,
+				32B3B0F71C7D349D00E3D250 /* StudentInfo.swift in Sources */,
 				325710691C7963A30009A0BE /* LoginViewController.swift in Sources */,
 				32B3B0E41C7A99FF00E3D250 /* UdacityConstants.swift in Sources */,
 				325710671C7963A30009A0BE /* AppDelegate.swift in Sources */,

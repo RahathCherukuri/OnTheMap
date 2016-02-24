@@ -14,20 +14,22 @@ extension ParseClient {
     // MARK: Constants
     struct Constants {
         
+        // MARK: ApplicationID
+        static let ApplicationID : String = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
+        
+        // MARK: RestAPIKey
+        static let RestAPIKey : String = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
+        
         // MARK: URLs
-        static let BaseURL : String = "http://www.udacity.com/api/"
-        static let BaseURLSecure : String = "https://www.udacity.com/api/"
-        static let AuthorizationURL : String = "https://www.udacity.com/account/auth#!/signin"
+        static let BaseURL : String = "http://api.parse.com/1/classes/"
+        static let BaseURLSecure : String = "https://api.parse.com/1/classes/"
     }
     
     // MARK: Methods
     struct Methods {
         
-        // MARK: Authentication
-        static let AuthenticationSession = "session"
-        
         // MARK: GetUserData
-        static let getUserData = "users/{user_id}"
+        static let studentLocation = "StudentLocation"
     }
     
     // MARK: Parameter Keys
@@ -53,9 +55,18 @@ extension ParseClient {
         static let StatusMessage = "status_message"
         static let StatusCode = "status_code"
         
-        // MARK: Authorization
-        static let Session = "session"
-        static let id = "id"
+        // MARK: StudentInformation
+        static let Results = "results"
+        static let CreatedAt = "createdAt"
+        static let FirstName = "firstName"
+        static let LastName = "lastName"
+        static let Latitude = "latitude"
+        static let Longitude = "longitude"
+        static let MapString = "mapString"
+        static let MediaURL = "mediaURL"
+        static let ObjectId = "objectId"
+        static let UniqueKey = "uniqueKey"
+        static let UpdatedAt = "updatedAt"
     }
     
 }
