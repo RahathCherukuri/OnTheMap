@@ -38,8 +38,8 @@ extension ParseClient {
             guard let createdAt = result[ParseClient.JSONResponseKeys.CreatedAt] as? String,
                     let firstName = result[ParseClient.JSONResponseKeys.FirstName] as? String,
                     let lastName = result[ParseClient.JSONResponseKeys.LastName] as? String,
-                    let latitude = result[ParseClient.JSONResponseKeys.Latitude] as? Float,
-                    let longitude = result[ParseClient.JSONResponseKeys.Longitude] as? Float,
+                    let latitude = result[ParseClient.JSONResponseKeys.Latitude] as? Double,
+                    let longitude = result[ParseClient.JSONResponseKeys.Longitude] as? Double,
                     let mapString = result[ParseClient.JSONResponseKeys.MapString] as? String,
                     let mediaURL = result[ParseClient.JSONResponseKeys.MediaURL] as? String,
                     let objectId = result[ParseClient.JSONResponseKeys.ObjectId] as? String,
@@ -52,8 +52,5 @@ extension ParseClient {
             StudentInfo(createdAt: createdAt, firstName: firstName, lastName: lastName, latitude: latitude, longitude: longitude, mapString: mapString, mediaURL: mediaURL, objectId: objectId, uniqueKey: uniqueKey, updatedAt: updatedAt)
             
         }
-        
-        print("values: ", StudentInfo.studentInfo)
-        print("")
     }
 }

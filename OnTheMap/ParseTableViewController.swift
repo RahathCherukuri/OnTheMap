@@ -12,11 +12,9 @@ class ParseTableViewController: UIViewController, UITableViewDelegate, UITableVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("view didload of ParseTableViewController")
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(StudentInfo.studentInfo.count)
         return StudentInfo.studentInfo.count
     }
     
@@ -25,26 +23,18 @@ class ParseTableViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let fullname = StudentInfo.studentInfo[indexPath.row].firstName + StudentInfo.studentInfo[indexPath.row].lastName
 
-        cell?.textLabel!.text = fullname
+        cell?.textLabel?.text = fullname
         cell?.detailTextLabel?.text = StudentInfo.studentInfo[indexPath.row].mediaURL
         return cell!
     }
-    
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-//        if editingStyle == UITableViewCellEditingStyle.Delete {
-//            Meme.memes.removeAtIndex(indexPath.row)
-//            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
-//        }
-    }
-    
+
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        let detailController = storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
-//        detailController.selectedIndex = indexPath.row
-//        navigationController!.pushViewController(detailController, animated: true)
+        let app = UIApplication.sharedApplication()
+        let toOpen = StudentInfo.studentInfo[indexPath.row].mediaURL
+        app.openURL(NSURL(string:toOpen)!)
     }
-
 }
