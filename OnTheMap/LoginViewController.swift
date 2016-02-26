@@ -36,21 +36,56 @@ class LoginViewController: UIViewController {
 //            }
 //        }
 
-        //Code to parse data and store in Struct.
+//        Code to parse data and store in Struct.
+        
+    }
+    
+    @IBAction func signUpButton(sender: UIButton) {
+//        UdacityClient.sharedInstance().signUp(self) { (success, errorString) in
+//            if success {
+//                print("success: ", success)
+//            } else {
+//                print("errorString: ", errorString)
+//            }
+//        }
+        
+        
+        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
+        self.presentViewController(controller, animated: true, completion: nil)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        getResults()
+//        let request = NSMutableURLRequest(URL: NSURL(string: "https://api.parse.com/1/classes/StudentLocation?order=-updatedAt")!)
+//        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+//        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+//        let session = NSURLSession.sharedSession()
+//        let task = session.dataTaskWithRequest(request) { data, response, error in
+//            if error != nil { // Handle error...
+//                return
+//            }
+//            print(NSString(data: data!, encoding: NSUTF8StringEncoding))
+//        }
+//        task.resume()
+    }
+
+    
+    func getResults() {
         
         let results: [[String: AnyObject]] =
         [
             [
-            "createdAt": "2015-02-25T01:10:38.103Z",
-            "firstName": "Jarrod",
-            "lastName": "Parkes",
-            "latitude": 34.7303688,
-            "longitude": -86.5861037,
-            "mapString": "Huntsville, Alabama ",
-            "mediaURL": "https://www.linkedin.com/in/jarrodparkes",
-            "objectId": "JhOtcRkxsh",
-            "uniqueKey": "996618664",
-            "updatedAt": "2015-03-09T22:04:50.315Z"
+                "createdAt": "2015-02-25T01:10:38.103Z",
+                "firstName": "Jarrod",
+                "lastName": "Parkes",
+                "latitude": 34.7303688,
+                "longitude": -86.5861037,
+                "mapString": "Huntsville, Alabama ",
+                "mediaURL": "https://www.linkedin.com/in/jarrodparkes",
+                "objectId": "JhOtcRkxsh",
+                "uniqueKey": "996618664",
+                "updatedAt": "2015-03-09T22:04:50.315Z"
             ],
             [
                 "createdAt":"2015-02-24T22:27:14.456Z",
@@ -79,17 +114,6 @@ class LoginViewController: UIViewController {
         ]
         
         ParseClient.sharedInstance().parseResultsAndSaveInStudentInfo(results)
-    }
-    
-    @IBAction func signUpButton(sender: UIButton) {
-        UdacityClient.sharedInstance().signUp(self) { (success, errorString) in
-            if success {
-                print("success: ", success)
-            } else {
-                print("errorString: ", errorString)
-            }
-        }
-        
     }
 
 }

@@ -12,14 +12,21 @@ class ParseTableViewController: UIViewController, UITableViewDelegate, UITableVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("view didload of ParseTableViewController")
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        print(StudentInfo.studentInfo.count)
+        return StudentInfo.studentInfo.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("parseCell")
+        
+        let fullname = StudentInfo.studentInfo[indexPath.row].firstName + StudentInfo.studentInfo[indexPath.row].lastName
+
+        cell?.textLabel!.text = fullname
+        cell?.detailTextLabel?.text = StudentInfo.studentInfo[indexPath.row].mediaURL
         return cell!
     }
     

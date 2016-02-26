@@ -33,8 +33,8 @@ extension ParseClient {
     }
     
     func parseResultsAndSaveInStudentInfo(results: [[String: AnyObject]]) {
-        for (result) in results {
         
+        for (result) in results {
             guard let createdAt = result[ParseClient.JSONResponseKeys.CreatedAt] as? String,
                     let firstName = result[ParseClient.JSONResponseKeys.FirstName] as? String,
                     let lastName = result[ParseClient.JSONResponseKeys.LastName] as? String,
@@ -45,16 +45,15 @@ extension ParseClient {
                     let objectId = result[ParseClient.JSONResponseKeys.ObjectId] as? String,
                     let uniqueKey = result[ParseClient.JSONResponseKeys.UniqueKey] as? String,
                     let updatedAt = result[ParseClient.JSONResponseKeys.UpdatedAt] as? String
-            
                 else {
                     print("Error in parsing results")
                     return
                 }
             StudentInfo(createdAt: createdAt, firstName: firstName, lastName: lastName, latitude: latitude, longitude: longitude, mapString: mapString, mediaURL: mediaURL, objectId: objectId, uniqueKey: uniqueKey, updatedAt: updatedAt)
             
-            print("values: ", StudentInfo.studentInfo)
-            print("")
         }
- 
+        
+        print("values: ", StudentInfo.studentInfo)
+        print("")
     }
 }

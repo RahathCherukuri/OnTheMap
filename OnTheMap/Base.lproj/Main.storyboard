@@ -95,7 +95,7 @@
         <!--On The Map-->
         <scene sceneID="BLI-6X-26h">
             <objects>
-                <viewController id="fBG-Zc-YOn" sceneMemberID="viewController">
+                <viewController id="fBG-Zc-YOn" customClass="ParseTableViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CX4-Cc-SLO"/>
                         <viewControllerLayoutGuide type="bottom" id="dMY-RF-rwN"/>
@@ -117,6 +117,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="fBG-Zc-YOn" id="aEG-kV-NL9"/>
+                                    <outlet property="delegate" destination="fBG-Zc-YOn" id="xEJ-6y-HKh"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -207,7 +211,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="EIW-AZ-bgB">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="N1Q-Zb-wUM" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="N1Q-Zb-wUM" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="ZqI-k9-EKi">
                         <autoresizingMask key="autoresizingMask"/>
