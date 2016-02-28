@@ -41,13 +41,10 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signUpButton(sender: UIButton) {
-        UdacityClient.sharedInstance().signUp(self) { (success, errorString) in
-            if success {
-                print("success: ", success)
-            } else {
-                print("errorString: ", errorString)
-            }
-        }
+        
+        let app = UIApplication.sharedApplication()
+        let toOpen = UdacityClient.Constants.AuthorizationURL
+        app.openURL(NSURL(string:toOpen)!)
     }
     
     override func viewWillAppear(animated: Bool) {

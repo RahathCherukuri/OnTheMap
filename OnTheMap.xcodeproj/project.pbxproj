@@ -18,7 +18,6 @@
 		32B3B0E31C7A99FF00E3D250 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3B0E01C7A99FF00E3D250 /* UdacityClient.swift */; };
 		32B3B0E41C7A99FF00E3D250 /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3B0E11C7A99FF00E3D250 /* UdacityConstants.swift */; };
 		32B3B0E51C7A99FF00E3D250 /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3B0E21C7A99FF00E3D250 /* UdacityConvenience.swift */; };
-		32B3B0E71C7BD48700E3D250 /* WebAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3B0E61C7BD48700E3D250 /* WebAuthViewController.swift */; };
 		32B3B0ED1C7C05A500E3D250 /* ParseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3B0EC1C7C05A500E3D250 /* ParseTableViewController.swift */; };
 		32B3B0F11C7C08EF00E3D250 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3B0F01C7C08EF00E3D250 /* ParseClient.swift */; };
 		32B3B0F31C7C099400E3D250 /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3B0F21C7C099400E3D250 /* ParseConvenience.swift */; };
@@ -61,7 +60,6 @@
 		32B3B0E01C7A99FF00E3D250 /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		32B3B0E11C7A99FF00E3D250 /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
 		32B3B0E21C7A99FF00E3D250 /* UdacityConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConvenience.swift; sourceTree = "<group>"; };
-		32B3B0E61C7BD48700E3D250 /* WebAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebAuthViewController.swift; sourceTree = "<group>"; };
 		32B3B0EC1C7C05A500E3D250 /* ParseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseTableViewController.swift; sourceTree = "<group>"; };
 		32B3B0F01C7C08EF00E3D250 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 		32B3B0F21C7C099400E3D250 /* ParseConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConvenience.swift; sourceTree = "<group>"; };
@@ -150,7 +148,6 @@
 			isa = PBXGroup;
 			children = (
 				325710681C7963A30009A0BE /* LoginViewController.swift */,
-				32B3B0E61C7BD48700E3D250 /* WebAuthViewController.swift */,
 				32B3B0EC1C7C05A500E3D250 /* ParseTableViewController.swift */,
 				32947E771C80BAC000CB6138 /* MapViewController.swift */,
 			);
@@ -329,7 +326,6 @@
 				325710671C7963A30009A0BE /* AppDelegate.swift in Sources */,
 				32B3B0F11C7C08EF00E3D250 /* ParseClient.swift in Sources */,
 				32B3B0F31C7C099400E3D250 /* ParseConvenience.swift in Sources */,
-				32B3B0E71C7BD48700E3D250 /* WebAuthViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

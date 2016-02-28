@@ -43,22 +43,4 @@ extension UdacityClient {
                 }
         }
     }
-    
-    
-    /* This function opens a WebView to handle the signUp */
-    func signUp(hostViewController: UIViewController, completionHandler: (success: Bool, errorString: String?) -> Void) {
-        
-        let authorizationURL = NSURL(string: "\(UdacityClient.Constants.AuthorizationURL)")
-        let request = NSURLRequest(URL: authorizationURL!)
-        let webAuthViewController = hostViewController.storyboard!.instantiateViewControllerWithIdentifier("WebAuthViewController") as! WebAuthViewController
-        webAuthViewController.urlRequest = request
-        webAuthViewController.completionHandler = completionHandler
-        
-        let webAuthNavigationController = UINavigationController()
-        webAuthNavigationController.pushViewController(webAuthViewController, animated: false)
-        
-        dispatch_async(dispatch_get_main_queue(), {
-            hostViewController.presentViewController(webAuthNavigationController, animated: true, completion: nil)
-        })
-    }
 }
