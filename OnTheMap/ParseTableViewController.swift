@@ -39,8 +39,24 @@ class ParseTableViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let app = UIApplication.sharedApplication()
+        print(StudentInfo.studentInfo[indexPath.row])
         let toOpen = StudentInfo.studentInfo[indexPath.row].mediaURL
-        app.openURL(NSURL(string:toOpen)!)
+        
+//        let url: NSURL? = NSURL(string: toOpen)
+//        
+//        if (url != nil) {
+//            app.openURL(url!)
+//        } else {
+//            print("Not a valid link")
+//        }
+        
+        
+        
+        
+        guard let url = NSURL(string:toOpen) as NSURL? else {
+            return
+        }
+        app.openURL(url)
     }
     
     func getStudentInformation() {
