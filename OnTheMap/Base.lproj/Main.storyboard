@@ -235,7 +235,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jmt-39-1ah">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jmt-39-1ah">
                                 <rect key="frame" x="0.0" y="472" width="600" height="128"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hVL-W2-EfT">
@@ -259,6 +259,9 @@
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" red="0.32549019610000002" green="0.31764705879999999" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="i1e-pd-u0k" firstAttribute="top" secondItem="Jmt-39-1ah" secondAttribute="bottom" id="5ip-m3-uKx"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="bottomView" destination="Jmt-39-1ah" id="EwI-qs-5Ip"/>
