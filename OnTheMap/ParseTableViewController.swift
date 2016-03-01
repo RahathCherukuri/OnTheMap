@@ -14,6 +14,11 @@ class ParseTableViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        getStudentInformation()
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return StudentInfo.studentInfo.count
     }
@@ -37,4 +42,16 @@ class ParseTableViewController: UIViewController, UITableViewDelegate, UITableVi
         let toOpen = StudentInfo.studentInfo[indexPath.row].mediaURL
         app.openURL(NSURL(string:toOpen)!)
     }
+    
+    func getStudentInformation() {
+        ParseClient.sharedInstance().getstudentInformation () { (success, results, errorString) in
+            if success {
+                print("success: ", success)
+                ParseClient.sharedInstance().parseResultsAndSaveInStudentInfo(results!)
+            } else {
+                print("errorString: ", errorString)
+            }
+        }
+    }
+    
 }

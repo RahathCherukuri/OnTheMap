@@ -46,8 +46,11 @@ class LoginViewController: UIViewController {
     // MARK: Actions
     @IBAction func loginButton(sender: AnyObject) {
         
-        let username = self.usernameTextField!.text!
-        let password = self.passwordTextField!.text!
+//        let username = self.usernameTextField!.text!
+//        let password = self.passwordTextField!.text!
+
+        let username = "rcheruku@syr.edu"
+        let password = "amanteddu"
         
         if usernameTextField!.text!.isEmpty {
             debugLabel.text = "Please enter your email."
@@ -69,16 +72,6 @@ class LoginViewController: UIViewController {
         }
         }
         
-//        ParseClient.sharedInstance().getstudentInformation () { (success, results, errorString) in
-//            if success {
-//                print("success: ", success)
-//                ParseClient.sharedInstance().parseResultsAndSaveInStudentInfo(results!)
-//                let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
-//                self.presentViewController(controller, animated: true, completion: nil)
-//            } else {
-//                print("errorString: ", errorString)
-//            }
-//        }
     }
     
     @IBAction func signUpButton(sender: UIButton) {

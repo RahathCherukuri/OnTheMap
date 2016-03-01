@@ -15,6 +15,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        getStudentInformation()
+    }
+    
+    func populateStudentInfoOntheMap() {
         let studentInfo = StudentInfo.studentInfo
         
         // We will create an MKPointAnnotation for each dictionary in "locations". The
@@ -32,7 +40,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
             
             let first = dictionary.firstName
-            let last = dictionary.lastName 
+            let last = dictionary.lastName
             let mediaURL = dictionary.mediaURL
             
             // Here we create the annotation and set its coordiate, title, and subtitle properties
@@ -50,6 +58,17 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     
+    func getStudentInformation() {
+        ParseClient.sharedInstance().getstudentInformation () { (success, results, errorString) in
+            if success {
+                print("success: ", success)
+                ParseClient.sharedInstance().parseResultsAndSaveInStudentInfo(results!)
+                self.populateStudentInfoOntheMap()
+            } else {
+                print("errorString: ", errorString)
+            }
+        }
+    }
     
     // MARK: - MKMapViewDelegate
     
