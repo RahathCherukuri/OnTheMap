@@ -36,7 +36,7 @@ class ParseClient: NSObject {
 //        mutableParameters[ParseClient.Constants.ApiKey] = Constants.ApiKey
         
         /* 2/3. Build the URL and configure the request */
-        let urlString = Constants.BaseURLSecure + method + ParseClient.escapedParameters(mutableParameters)
+        let urlString = ParseClient.Constants.BaseURLSecure + method + ParseClient.escapedParameters(mutableParameters)
         let url = NSURL(string: urlString)!
         let request = NSMutableURLRequest(URL: url)
         
@@ -79,6 +79,74 @@ class ParseClient: NSObject {
         
         return task
     }
+    
+    
+    // MARK: POST
+    
+    func taskForPOSTMethod(method: String, parameters: [String : AnyObject], jsonBody: [String:AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+        
+        /* 1. Set the parameters */
+        let mutableParameters = parameters
+        
+        /* 2/3. Build the URL and configure the request */
+        let urlString = ParseClient.Constants.BaseURLSecure + method + ParseClient.escapedParameters(mutableParameters)
+        let url = NSURL(string: urlString)!
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+
+        
+        do {
+            request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(jsonBody, options: .PrettyPrinted)
+        }
+        
+        /* 4. Make the request */
+        let task = session.dataTaskWithRequest(request) { (data, response, error) in
+            
+            /* GUARD: Was there an error? */
+            guard (error == nil) else {
+                if ((error?.code) != nil && error?.code == -1009) {
+                    print("No Network Connection")
+                } else {
+                    print("There was an error with your request: \(error)")
+                }
+                return
+            }
+            
+            /* GUARD: Did we get a successful 2XX response? */
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                if let response = response as? NSHTTPURLResponse {
+                    if ((response.statusCode) == 403) {
+                        print("Authentication issue")
+                    }
+                    print("Your request returned an invalid response! Status code: \(response.statusCode)!")
+                } else if let response = response {
+                    print("Your request returned an invalid response! Response: \(response)!")
+                } else {
+                    print("Your request returned an invalid response!")
+                }
+                return
+            }
+            
+            /* GUARD: Was there any data returned? */
+            guard let data = data else {
+                print("No data was returned by the request!")
+                return
+            }
+            
+            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
+            /* 5/6. Parse the data and use the data (happens in completion handler) */
+            UdacityClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
+        }
+        
+        /* 7. Start the request */
+        task.resume()
+        
+        return task
+    }
+
     
     // MARK: Helpers
     

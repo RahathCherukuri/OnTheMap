@@ -21,14 +21,10 @@ class PostInformationViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     
-    var annotation:MKAnnotation!
-    var localSearchRequest:MKLocalSearchRequest!
-    var localSearch:MKLocalSearch!
-    var localSearchResponse:MKLocalSearchResponse!
-    var error:NSError!
-    var pointAnnotation:MKPointAnnotation!
-    var pinAnnotationView:MKPinAnnotationView!
+    @IBOutlet weak var findOnTheMapButton: UIButton!
     
+    @IBOutlet weak var submitButton: UIButton!
+
     @IBAction func searchOnTheMap(sender: UIButton) {
         
         let location = locationTextField.text!
@@ -36,7 +32,7 @@ class PostInformationViewController: UIViewController {
         
         mapView.hidden = false
         linkTextField.hidden = false
-        bottomView.hidden = true
+        bottomView.hidden = false
         locationTextField.hidden = true
         
         let geocoder = CLGeocoder()
@@ -49,6 +45,15 @@ class PostInformationViewController: UIViewController {
                 print("placemarks: ", placemarks)
             }
         })
+    }
+    
+    @IBAction func submitButtonPressed(sender: UIButton) {
+        if linkTextField!.text!.isEmpty {
+            print("linkTextField is Empty!!")
+        } else {
+            PostStudentInfo.sharedInstance().mediaURL = linkTextField!.text!
+     
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -68,6 +73,9 @@ class PostInformationViewController: UIViewController {
         let annotation = MKPointAnnotation()
         let latitude = region!.center.latitude
         let longitude = region!.center.longitude
+        PostStudentInfo.sharedInstance().latitude = latitude
+        PostStudentInfo.sharedInstance().longitude = longitude
+        PostStudentInfo.sharedInstance().mapString = locationTextField.text!
         annotation.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         
         mapView.setRegion(region!, animated: true)
@@ -82,8 +90,6 @@ class PostInformationViewController: UIViewController {
         for placemark in placemarks {
             
             let coordinate: CLLocationCoordinate2D = placemark.location!.coordinate
-            //let latitude: CLLocationDegrees = placemark.location!.coordinate.latitude
-            //let longitude: CLLocationDegrees = placemark.location!.coordinate.longitude
             let span: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
             
             regions.append(MKCoordinateRegion(center: coordinate, span: span))

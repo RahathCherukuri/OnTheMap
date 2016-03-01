@@ -257,6 +257,13 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="1p0-Zo-FbH">
                                 <rect key="frame" x="0.0" y="199" width="600" height="401"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mVU-Sd-Pk6">
+                                <rect key="frame" x="276" y="555" width="49" height="30"/>
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="submitButtonPressed:" destination="t0A-b2-pYW" eventType="touchUpInside" id="WkA-4z-l7d"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.32549019610000002" green="0.31764705879999999" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -265,10 +272,12 @@
                     </view>
                     <connections>
                         <outlet property="bottomView" destination="Jmt-39-1ah" id="EwI-qs-5Ip"/>
+                        <outlet property="findOnTheMapButton" destination="hVL-W2-EfT" id="ACM-3c-2P6"/>
                         <outlet property="linkTextField" destination="Uei-Cx-mDc" id="838-S6-sk3"/>
                         <outlet property="locationLabel" destination="uEf-ye-Sat" id="1iq-4k-ZWa"/>
                         <outlet property="locationTextField" destination="CL1-YO-9y0" id="pjV-bB-5OP"/>
                         <outlet property="mapView" destination="1p0-Zo-FbH" id="ycE-yq-U7L"/>
+                        <outlet property="submitButton" destination="mVU-Sd-Pk6" id="SMh-rl-012"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lSW-4Q-oSk" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -67,6 +67,7 @@ extension ParseClient {
         static let ObjectId = "objectId"
         static let UniqueKey = "uniqueKey"
         static let UpdatedAt = "updatedAt"
+        static let ObjectID = "objectId"
     }
     
 }

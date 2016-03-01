@@ -12,6 +12,7 @@ import Foundation
 
 extension ParseClient {
     
+    //TODO: Save UniqueKey, firstname and lastname into postStudentInfo
     func getstudentInformation(completionHandler: (success: Bool, results: [[String: AnyObject]]?, errorString: String?) -> Void) {
         let method: String = ParseClient.Methods.studentLocation
         let parameters: [String: AnyObject] = [ : ]
@@ -32,6 +33,39 @@ extension ParseClient {
         }
     }
     
+    
+    func postStudentInformation(completionHandler: (success: Bool, objectId: String?, errorString: String?) -> Void) {
+        let parameters: [String: AnyObject] = [ : ]
+        let method: String = ParseClient.Methods.studentLocation
+        
+        // TODO: Add uniquekey to pass in the jsonBody
+        let jsonBody: [String: AnyObject] = [
+        "firstName": PostStudentInfo.sharedInstance().firstName,
+        "lastName": PostStudentInfo.sharedInstance().lastName,
+        "mapString": PostStudentInfo.sharedInstance().mapString,
+        "mediaURL": PostStudentInfo.sharedInstance().mediaURL,
+        "latitude": PostStudentInfo.sharedInstance().latitude,
+        "longitude": PostStudentInfo.sharedInstance().longitude
+        ]
+        
+        /* 2. Make the request */
+        taskForPOSTMethod(method, parameters: parameters, jsonBody: jsonBody) { (JSONResult, error) in
+            /* 3. Send the desired value(s) to completion handler */
+            if let error = error {
+                print("error: ", error)
+                completionHandler(success: false, objectId: nil, errorString: "Posting student information failed!")
+            } else {
+                if let objectId = JSONResult[ParseClient.JSONResponseKeys.ObjectID] as? String {
+                        completionHandler(success: true, objectId: objectId, errorString: nil)
+                } else {
+                    print("Could not find \(UdacityClient.JSONResponseKeys.Session) in \(JSONResult)")
+                    completionHandler(success: false, objectId: nil, errorString: "Posting student information failed!")
+                }
+            }
+        }
+
+    }
+    
     func parseResultsAndSaveInStudentInfo(results: [[String: AnyObject]]) {
         
         for (result) in results {
@@ -50,7 +84,7 @@ extension ParseClient {
                     return
                 }
             StudentInfo(createdAt: createdAt, firstName: firstName, lastName: lastName, latitude: latitude, longitude: longitude, mapString: mapString, mediaURL: mediaURL, objectId: objectId, uniqueKey: uniqueKey, updatedAt: updatedAt)
-            
         }
     }
+
 }
