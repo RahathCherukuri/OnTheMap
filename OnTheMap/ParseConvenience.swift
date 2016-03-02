@@ -34,12 +34,13 @@ extension ParseClient {
     }
     
     
-    func postStudentInformation(completionHandler: (success: Bool, objectId: String?, errorString: String?) -> Void) {
+    func postStudentInformation(completionHandler: (success: Bool, objectId: String?, createdAt: String?, errorString: String?) -> Void) {
         let parameters: [String: AnyObject] = [ : ]
         let method: String = ParseClient.Methods.studentLocation
         
         // TODO: Add uniquekey to pass in the jsonBody
         let jsonBody: [String: AnyObject] = [
+        "uniqueKey": UdacityClient.sharedInstance().key!,
         "firstName": PostStudentInfo.sharedInstance().firstName,
         "lastName": PostStudentInfo.sharedInstance().lastName,
         "mapString": PostStudentInfo.sharedInstance().mapString,
@@ -47,19 +48,22 @@ extension ParseClient {
         "latitude": PostStudentInfo.sharedInstance().latitude,
         "longitude": PostStudentInfo.sharedInstance().longitude
         ]
+        print("In postStudentInformation: ", jsonBody)
         
         /* 2. Make the request */
         taskForPOSTMethod(method, parameters: parameters, jsonBody: jsonBody) { (JSONResult, error) in
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
                 print("error: ", error)
-                completionHandler(success: false, objectId: nil, errorString: "Posting student information failed!")
+                completionHandler(success: false, objectId: nil, createdAt: nil, errorString: "Posting student information failed!")
             } else {
-                if let objectId = JSONResult[ParseClient.JSONResponseKeys.ObjectID] as? String {
-                        completionHandler(success: true, objectId: objectId, errorString: nil)
+                if let objectId = JSONResult[ParseClient.JSONResponseKeys.ObjectID] as? String,
+                    let createdAt = JSONResult[ParseClient.JSONResponseKeys.CreatedAt] as? String
+                {
+                    completionHandler(success: true, objectId: objectId, createdAt: createdAt, errorString: nil)
                 } else {
-                    print("Could not find \(UdacityClient.JSONResponseKeys.Session) in \(JSONResult)")
-                    completionHandler(success: false, objectId: nil, errorString: "Posting student information failed!")
+                    print("Could not find \(ParseClient.JSONResponseKeys.ObjectID) or \(ParseClient.JSONResponseKeys.CreatedAt) in \(JSONResult)")
+                    completionHandler(success: false, objectId: nil, createdAt: nil, errorString: "Posting student information failed!")
                 }
             }
         }

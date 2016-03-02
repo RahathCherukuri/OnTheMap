@@ -40,6 +40,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
+    @IBAction func postInformation(sender: UIBarButtonItem) {
+        let controller = self.storyboard?.instantiateViewControllerWithIdentifier("PostInformationViewController") as! PostInformationViewController
+        self.presentViewController(controller, animated: true, completion: nil)
+    }
     
     @IBAction func refreshButtonAction(sender: UIBarButtonItem) {
         getStudentInformation()

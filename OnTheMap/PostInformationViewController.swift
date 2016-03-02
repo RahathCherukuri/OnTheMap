@@ -52,6 +52,19 @@ class PostInformationViewController: UIViewController {
             print("linkTextField is Empty!!")
         } else {
             PostStudentInfo.sharedInstance().mediaURL = linkTextField!.text!
+            ParseClient.sharedInstance().postStudentInformation() { (success, objectID, createdAt, errorString) in
+                if success {
+                    print("success: ", success)
+                    print("objectID: ", objectID)
+                    print("createdAt: ", createdAt)
+                    dispatch_async(dispatch_get_main_queue(),{
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    })
+                } else {
+                    print("errorString: ", errorString)
+                }
+
+            }
         }
     }
     
@@ -60,6 +73,9 @@ class PostInformationViewController: UIViewController {
         linkTextField.hidden = true
     }
     
+    @IBAction func cancelButtonPressed(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     // Drops pin on the map for user provided location.
     func addUserLocation(placemarks: [AnyObject]) {

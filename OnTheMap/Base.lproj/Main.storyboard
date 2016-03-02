@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -142,11 +143,18 @@
                                 <action selector="logOutButtonAction:" destination="ltC-ZX-RWW" id="nf5-wo-LCz"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="e8s-m4-Ib8">
-                            <connections>
-                                <action selector="refreshButtonAction:" destination="ltC-ZX-RWW" id="G1j-g1-lbD"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="refresh" id="e8s-m4-Ib8">
+                                <connections>
+                                    <action selector="refreshButtonAction:" destination="ltC-ZX-RWW" id="G1j-g1-lbD"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="pin" id="EI9-Ub-vOI">
+                                <connections>
+                                    <action selector="postInformation:" destination="ltC-ZX-RWW" id="2m1-Wo-2Cf"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="tuj-8Z-KW0" id="vtf-9U-pSa"/>
@@ -217,11 +225,18 @@
                                 <action selector="logOutButtonAction:" destination="fBG-Zc-YOn" id="ROC-oO-n1S"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="bPZ-DL-6tK">
-                            <connections>
-                                <action selector="refreshButtonAction:" destination="fBG-Zc-YOn" id="6xg-uG-FEZ"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="refresh" id="bPZ-DL-6tK">
+                                <connections>
+                                    <action selector="refreshButtonAction:" destination="fBG-Zc-YOn" id="6xg-uG-FEZ"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="pin" id="leQ-i6-IxL">
+                                <connections>
+                                    <action selector="postInformation:" destination="fBG-Zc-YOn" id="5OL-3s-KLC"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="HXa-Mn-lYq" id="20F-HC-GxE"/>
@@ -234,7 +249,7 @@
         <!--Post Information View Controller-->
         <scene sceneID="rT2-br-4c3">
             <objects>
-                <viewController id="t0A-b2-pYW" customClass="PostInformationViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PostInformationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="t0A-b2-pYW" customClass="PostInformationViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IeB-Yg-F0m"/>
                         <viewControllerLayoutGuide type="bottom" id="i1e-pd-u0k"/>
@@ -257,6 +272,13 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FeF-cd-TZh">
+                                        <rect key="frame" x="499" y="24" width="48" height="30"/>
+                                        <state key="normal" title="Cancel"/>
+                                        <connections>
+                                            <action selector="cancelButtonPressed:" destination="t0A-b2-pYW" eventType="touchUpInside" id="CNZ-e5-cE0"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -367,6 +389,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="pin" width="32" height="32"/>
         <image name="udacity" width="256" height="256"/>
     </resources>
 </document>
