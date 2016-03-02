@@ -43,4 +43,31 @@ extension UdacityClient {
                 }
         }
     }
+    
+    func deleteSession(completionHandler: (success: Bool, sessionID: String?, errorString: String?) -> Void) {
+        
+        let parameters: [String : AnyObject] = [ : ]
+        let method: String = Methods.AuthenticationSession
+        taskForDeleteMethod(method, parameters: parameters){(JSONResult, error) in
+            /* 3. Send the desired value(s) to completion handler */
+            if let error = error {
+                print("error: ", error)
+                completionHandler(success: false, sessionID: nil, errorString: "LogOut session Failed.")
+            } else {
+                if let session = JSONResult[UdacityClient.JSONResponseKeys.Session] as? NSDictionary {
+                    if let id = session[UdacityClient.JSONResponseKeys.id] as? String {
+                        self.sessionID = nil
+                        completionHandler(success: true, sessionID: id, errorString: nil)
+                    } else {
+                        print("Could not find \(UdacityClient.JSONResponseKeys.id) in \(JSONResult)")
+                        completionHandler(success: false, sessionID: nil, errorString: "LogOut session Failed.")
+                    }
+                } else {
+                    print("Could not find \(UdacityClient.JSONResponseKeys.Session) in \(JSONResult)")
+                    completionHandler(success: false, sessionID: nil, errorString: "LogOut session Failed.")
+                }
+            }
+        }
+    }
+    
 }

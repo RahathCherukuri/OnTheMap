@@ -52,7 +52,6 @@ class PostInformationViewController: UIViewController {
             print("linkTextField is Empty!!")
         } else {
             PostStudentInfo.sharedInstance().mediaURL = linkTextField!.text!
-     
         }
     }
     

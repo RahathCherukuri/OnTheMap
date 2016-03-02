@@ -25,7 +25,17 @@ class ParseTableViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     @IBAction func logOutButtonAction(sender: UIBarButtonItem) {
-        
+        UdacityClient.sharedInstance().deleteSession(){ (success, id, errorString) in
+            if success {
+                print("success: ", success)
+                print("id: ", id)
+                dispatch_async(dispatch_get_main_queue(),{
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                })
+            } else {
+                print("errorString: ", errorString)
+            }
+        }
     }
     
     @IBAction func refreshButtonAction(sender: UIBarButtonItem) {
