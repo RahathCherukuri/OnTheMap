@@ -45,7 +45,7 @@ class LoginViewController: UIViewController {
 
     // MARK: Actions
     @IBAction func loginButton(sender: AnyObject) {
-
+        
         let username = self.usernameTextField!.text!
         let password = self.passwordTextField!.text!
         
@@ -57,9 +57,21 @@ class LoginViewController: UIViewController {
         UdacityClient.sharedInstance().getSessionID(username, password: password) { (success, sessionID, errorString) in
                 if success {
                     print("sessionID: ", UdacityClient.sharedInstance().sessionID!)
-                    dispatch_async(dispatch_get_main_queue(),{
-                     self.completeLogin()
-                    })
+                    UdacityClient.sharedInstance().getUserData() {(success, errorString) in
+                        if success {
+                            print("In getUserData")
+                            print("poststudentInfo firstname:", PostStudentInfo.sharedInstance().firstName)
+                            print("poststudentInfo lastName:", PostStudentInfo.sharedInstance().lastName)
+                            dispatch_async(dispatch_get_main_queue(),{
+                                self.completeLogin()
+                            })
+                        } else {
+                            print("errorString: ", errorString)
+                            dispatch_async(dispatch_get_main_queue(),{
+                                self.showAlertView(errorString!)
+                            })
+                        }
+                    }
                 } else {
                     print("errorString: ", errorString)
                     dispatch_async(dispatch_get_main_queue(),{
@@ -68,7 +80,6 @@ class LoginViewController: UIViewController {
                 }
         }
         }
-        
     }
     
     @IBAction func signUpButton(sender: UIButton) {

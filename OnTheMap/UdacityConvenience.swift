@@ -28,12 +28,17 @@ extension UdacityClient {
                     print("error: ", error)
                     completionHandler(success: false, sessionID: nil, errorString: "Login Failed (SessionID).")
                 } else {
-                    if let session = JSONResult[UdacityClient.JSONResponseKeys.Session] as? NSDictionary {
-                        if let id = session[UdacityClient.JSONResponseKeys.id] as? String {
+                    if let session = JSONResult[UdacityClient.JSONResponseKeys.Session] as? NSDictionary,
+                        let account = JSONResult[UdacityClient.JSONResponseKeys.Account] as? NSDictionary
+                    {
+                        if let id = session[UdacityClient.JSONResponseKeys.id] as? String,
+                            let key = account[UdacityClient.JSONResponseKeys.Key] as? String
+                        {
                             self.sessionID = id
+                            self.key = key
                             completionHandler(success: true, sessionID: id, errorString: nil)
                         } else {
-                            print("Could not find \(UdacityClient.JSONResponseKeys.id) in \(JSONResult)")
+                            print("Could not find \(UdacityClient.JSONResponseKeys.id) or \(UdacityClient.JSONResponseKeys.Key) in \(JSONResult)")
                             completionHandler(success: false, sessionID: nil, errorString: "Login Failed (SessionID).")
                         }
                     } else {
@@ -65,6 +70,36 @@ extension UdacityClient {
                 } else {
                     print("Could not find \(UdacityClient.JSONResponseKeys.Session) in \(JSONResult)")
                     completionHandler(success: false, sessionID: nil, errorString: "LogOut session Failed.")
+                }
+            }
+        }
+    }
+    
+    
+    func getUserData(completionHandler: (success: Bool, errorString: String?) -> Void) {
+        let parameters: [String : AnyObject] = [ : ]
+        let method: String = Methods.getUserData
+        
+        taskForGETMethod(method, parameters: parameters) {(JSONResult, error) in
+            /* 3. Send the desired value(s) to completion handler */
+            if let error = error {
+                print("error: ", error)
+                completionHandler(success: false, errorString: "Couldnt get user's data.")
+            } else {
+                if let user = JSONResult[UdacityClient.JSONResponseKeys.User] as? NSDictionary {
+                    if let firstname = user[UdacityClient.JSONResponseKeys.FirstName] as? String,
+                        let lastname = user[UdacityClient.JSONResponseKeys.LastName] as? String
+                    {
+                        PostStudentInfo.sharedInstance().firstName = firstname
+                        PostStudentInfo.sharedInstance().lastName = lastname
+                        completionHandler(success: true, errorString: nil)
+                    } else {
+                        print("Could not find \(UdacityClient.JSONResponseKeys.id) in \(JSONResult)")
+                        completionHandler(success: false, errorString: "Couldnt get user's data.")
+                    }
+                } else {
+                    print("Could not find \(UdacityClient.JSONResponseKeys.Session) in \(JSONResult)")
+                    completionHandler(success: false, errorString: "Couldnt get user's data.")
                 }
             }
         }

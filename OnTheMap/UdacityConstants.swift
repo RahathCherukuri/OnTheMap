@@ -25,8 +25,8 @@ extension UdacityClient {
         // MARK: Authentication
         static let AuthenticationSession = "session"
         
-        // MARK: GetUserData
-        static let getUserData = "users/{user_id}"
+        // MARK: GetUserData users/{user_id}
+        static let getUserData = "users/"
     }
     
     // MARK: Parameter Keys
@@ -55,6 +55,11 @@ extension UdacityClient {
         // MARK: Authorization
         static let Session = "session"
         static let id = "id"
+        static let Key = "key"
+        static let Account = "account"
+        static let User = "user"
+        static let FirstName = "first_name"
+        static let LastName = "last_name"
     }
 
 }
