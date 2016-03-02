@@ -13,21 +13,41 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     
+    var annotations = [MKPointAnnotation]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        print("viewDidload")
     }
     
     override func viewWillAppear(animated: Bool) {
+        print("viewWillAppear")
         super.viewWillAppear(animated)
         getStudentInformation()
     }
     
+    @IBAction func logOutButtonAction(sender: UIBarButtonItem) {
+    }
+    
+    
+    @IBAction func refreshButtonAction(sender: UIBarButtonItem) {
+        getStudentInformation()
+    }
+    
     func populateStudentInfoOntheMap() {
+        
         let studentInfo = StudentInfo.studentInfo
+        print("mapViewCount: ", studentInfo.count)
+        
+        // Remove the annotations .
+        if(annotations.count != 0) {
+            self.mapView.removeAnnotations(annotations)
+            annotations = [MKPointAnnotation]()
+        }
         
         // We will create an MKPointAnnotation for each dictionary in "locations". The
         // point annotations will be stored in this array, and then provided to the map view.
-        var annotations = [MKPointAnnotation]()
         
         for dictionary in studentInfo {
             
@@ -63,7 +83,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             if success {
                 print("success: ", success)
                 ParseClient.sharedInstance().parseResultsAndSaveInStudentInfo(results!)
-                self.populateStudentInfoOntheMap()
+                dispatch_async(dispatch_get_main_queue(),{
+                    self.populateStudentInfoOntheMap()
+                })
+
             } else {
                 print("errorString: ", errorString)
             }
@@ -116,4 +139,5 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     //            app.openURL(NSURL(string: annotationView.annotation.subtitle))
     //        }
     //    }
+    
 }

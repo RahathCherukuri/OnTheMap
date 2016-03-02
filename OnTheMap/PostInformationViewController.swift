@@ -91,10 +91,8 @@ class PostInformationViewController: UIViewController {
             
             let coordinate: CLLocationCoordinate2D = placemark.location!.coordinate
             let span: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-            
             regions.append(MKCoordinateRegion(center: coordinate, span: span))
         }
-        
         return regions.first
     }
     

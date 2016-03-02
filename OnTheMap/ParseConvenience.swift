@@ -67,7 +67,7 @@ extension ParseClient {
     }
     
     func parseResultsAndSaveInStudentInfo(results: [[String: AnyObject]]) {
-        
+        StudentInfo.studentInfo = [StudentInfo]()
         for (result) in results {
             guard let createdAt = result[ParseClient.JSONResponseKeys.CreatedAt] as? String,
                     let firstName = result[ParseClient.JSONResponseKeys.FirstName] as? String,

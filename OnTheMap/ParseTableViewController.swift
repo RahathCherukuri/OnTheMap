@@ -9,17 +9,34 @@
 import UIKit
 
 class ParseTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("viewDidload")
     }
     
     override func viewWillAppear(animated: Bool) {
+        print("viewWillAppear")
         super.viewWillAppear(animated)
         getStudentInformation()
     }
     
+    
+    @IBAction func logOutButtonAction(sender: UIBarButtonItem) {
+        
+    }
+    
+    @IBAction func refreshButtonAction(sender: UIBarButtonItem) {
+        getStudentInformation()
+    }
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if StudentInfo.studentInfo.count == 0 {
+            getStudentInformation()
+        }
+        print(StudentInfo.studentInfo.count)
         return StudentInfo.studentInfo.count
     }
     
@@ -41,18 +58,6 @@ class ParseTableViewController: UIViewController, UITableViewDelegate, UITableVi
         let app = UIApplication.sharedApplication()
         print(StudentInfo.studentInfo[indexPath.row])
         let toOpen = StudentInfo.studentInfo[indexPath.row].mediaURL
-        
-//        let url: NSURL? = NSURL(string: toOpen)
-//        
-//        if (url != nil) {
-//            app.openURL(url!)
-//        } else {
-//            print("Not a valid link")
-//        }
-        
-        
-        
-        
         guard let url = NSURL(string:toOpen) as NSURL? else {
             return
         }
@@ -64,10 +69,13 @@ class ParseTableViewController: UIViewController, UITableViewDelegate, UITableVi
             if success {
                 print("success: ", success)
                 ParseClient.sharedInstance().parseResultsAndSaveInStudentInfo(results!)
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.tableView.reloadData()
+                }
             } else {
                 print("errorString: ", errorString)
             }
         }
     }
-    
+ 
 }

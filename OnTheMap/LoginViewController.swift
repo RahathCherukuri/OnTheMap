@@ -46,11 +46,8 @@ class LoginViewController: UIViewController {
     // MARK: Actions
     @IBAction func loginButton(sender: AnyObject) {
         
-//        let username = self.usernameTextField!.text!
-//        let password = self.passwordTextField!.text!
-
-        let username = "rcheruku@syr.edu"
-        let password = "amanteddu"
+        let username = self.usernameTextField!.text!
+        let password = self.passwordTextField!.text!
         
         if usernameTextField!.text!.isEmpty {
             debugLabel.text = "Please enter your email."

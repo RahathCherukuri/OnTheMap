@@ -136,7 +136,18 @@
                             <constraint firstAttribute="trailing" secondItem="tuj-8Z-KW0" secondAttribute="trailing" id="xmR-dp-kBb"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="On The Map" id="1I6-tI-jNj"/>
+                    <navigationItem key="navigationItem" title="On The Map" id="1I6-tI-jNj">
+                        <barButtonItem key="leftBarButtonItem" title="LogOut" id="nc2-cy-VXK">
+                            <connections>
+                                <action selector="logOutButtonAction:" destination="ltC-ZX-RWW" id="nf5-wo-LCz"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="e8s-m4-Ib8">
+                            <connections>
+                                <action selector="refreshButtonAction:" destination="ltC-ZX-RWW" id="G1j-g1-lbD"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="tuj-8Z-KW0" id="vtf-9U-pSa"/>
                     </connections>
@@ -200,7 +211,21 @@
                             <constraint firstAttribute="trailing" secondItem="HXa-Mn-lYq" secondAttribute="trailing" id="sSa-E9-C75"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="On The Map" id="gtJ-gB-as4"/>
+                    <navigationItem key="navigationItem" title="On The Map" id="gtJ-gB-as4">
+                        <barButtonItem key="leftBarButtonItem" title="LogOut" id="Qab-dV-gVC">
+                            <connections>
+                                <action selector="logOutButtonAction:" destination="fBG-Zc-YOn" id="ROC-oO-n1S"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="bPZ-DL-6tK">
+                            <connections>
+                                <action selector="refreshButtonAction:" destination="fBG-Zc-YOn" id="6xg-uG-FEZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="HXa-Mn-lYq" id="20F-HC-GxE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HfN-m1-7pT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -224,7 +249,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Where are you Studying today?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uEf-ye-Sat">
                                         <rect key="frame" x="181" y="86" width="239" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uei-Cx-mDc">
