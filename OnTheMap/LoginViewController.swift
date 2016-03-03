@@ -13,11 +13,11 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var debugLabel: UILabel!
-    
     @IBOutlet weak var logInButton: UIButton!
     
     // Handling Taps
     var tapRecognizer: UITapGestureRecognizer? = nil
+    //Keyboard Notifications
     var keyboardAdjusted = false
     var lastKeyboardOffset: CGFloat = 0.0
 
@@ -169,7 +169,5 @@ extension LoginViewController {
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
         return keyboardSize.CGRectValue().height
     }
-    
-
 }
 
