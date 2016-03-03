@@ -25,11 +25,13 @@ class PostInformationViewController: UIViewController {
     
     @IBOutlet weak var submitButton: UIButton!
     
+    @IBOutlet weak var activityView: UIActivityIndicatorView!
     
     override func viewWillAppear(animated: Bool) {
         mapView.hidden = true
         linkTextField.hidden = true
         submitButton.hidden = true
+        activityView.hidden = true
     }
 
     @IBAction func searchOnTheMap(sender: UIButton) {
@@ -40,6 +42,7 @@ class PostInformationViewController: UIViewController {
         locationTextField.hidden = true
         findOnTheMapButton.hidden = true
         mapView.hidden = false
+        activityView.hidden = false
         linkTextField.hidden = false
         submitButton.hidden = false
         
@@ -48,8 +51,11 @@ class PostInformationViewController: UIViewController {
             if error != nil {
                 print("Its an error")
             } else {
-                self.addUserLocation(placemarks!)
-                self.locationLabel.text = "Enter the URL:"
+                dispatch_async(dispatch_get_main_queue(),{
+                    self.addUserLocation(placemarks!)
+                    self.locationLabel.text = "Enter the URL:"
+                    self.activityView.hidden = true
+                })
                 print("placemarks: ", placemarks)
             }
         })
