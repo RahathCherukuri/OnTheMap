@@ -24,16 +24,24 @@ class PostInformationViewController: UIViewController {
     @IBOutlet weak var findOnTheMapButton: UIButton!
     
     @IBOutlet weak var submitButton: UIButton!
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        mapView.hidden = true
+        linkTextField.hidden = true
+        submitButton.hidden = true
+    }
 
     @IBAction func searchOnTheMap(sender: UIButton) {
         
         let location = locationTextField.text!
-        print(location)
         
+        bottomView.alpha = 0.3
+        locationTextField.hidden = true
+        findOnTheMapButton.hidden = true
         mapView.hidden = false
         linkTextField.hidden = false
-        bottomView.hidden = false
-        locationTextField.hidden = true
+        submitButton.hidden = false
         
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(location, completionHandler: {(placemarks: [CLPlacemark]?, error: NSError?) -> Void in
@@ -66,11 +74,6 @@ class PostInformationViewController: UIViewController {
 
             }
         }
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        mapView.hidden = true
-        linkTextField.hidden = true
     }
     
     @IBAction func cancelButtonPressed(sender: UIButton) {
