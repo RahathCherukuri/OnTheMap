@@ -18,6 +18,8 @@ class LoginViewController: UIViewController {
     
     // Handling Taps
     var tapRecognizer: UITapGestureRecognizer? = nil
+    var keyboardAdjusted = false
+    var lastKeyboardOffset: CGFloat = 0.0
 
     // Handling View Methods
     override func viewDidLoad() {
@@ -29,28 +31,28 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         /* Add tap recognizer */
-        self.addKeyboardDismissRecognizer();
+        addKeyboardDismissRecognizer();
         
         /* Subscribe to all keyboard events */
-        self.subscribeToKeyboardNotifications()
+        subscribeToKeyboardNotifications()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
         /* Remove tap recognizer */
-        self.removeKeyboardDismissRecognizer()
+        removeKeyboardDismissRecognizer()
         
         /* Unsubscribe to all keyboard events */
-        self.unsubscribeToKeyboardNotifications()
+        unsubscribeFromKeyboardNotifications()
     }
 
     // MARK: Actions
     @IBAction func loginButton(sender: AnyObject) {
-
+        
         let username = self.usernameTextField!.text!
         let password = self.passwordTextField!.text!
-        
+
         if usernameTextField!.text!.isEmpty {
             debugLabel.text = "Please enter your email."
         } else if passwordTextField!.text!.isEmpty {
@@ -93,7 +95,6 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signUpButton(sender: UIButton) {
-        
         let app = UIApplication.sharedApplication()
         let toOpen = UdacityClient.Constants.AuthorizationURL
         app.openURL(NSURL(string:toOpen)!)
@@ -122,45 +123,9 @@ class LoginViewController: UIViewController {
     func removeKeyboardDismissRecognizer() {
         self.view.removeGestureRecognizer(tapRecognizer!)
     }
-    
+
     func handleSingleTap(recognizer: UITapGestureRecognizer) {
         self.view.endEditing(true)
-    }
-    
-    func subscribeToKeyboardNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
-    }
-    
-    func unsubscribeToKeyboardNotifications() {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-    }
-    
-    func keyboardWillShow(notification: NSNotification) {
-        if self.view.frame.origin.y == 0.0 {
-            self.view.frame.origin.y -= self.getKeyboardHeight(notification)
-        }
-    }
-    
-    func keyboardWillHide(notification: NSNotification) {
-        if self.view.frame.origin.y != 0.0 {
-            self.view.frame.origin.y = 0.0
-        }
-    }
-    
-    func getKeyboardHeight(notification: NSNotification) -> CGFloat {
-        let userInfo = notification.userInfo
-        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
-        return keyboardSize.CGRectValue().height
-    }
-
-}
-
-extension LoginViewController {
-    func dismissAnyVisibleKeyboards() {
-        if usernameTextField.isFirstResponder() || passwordTextField.isFirstResponder(){
-            self.view.endEditing(true)
-        }
     }
     
     func showAlertView(message: String) {
@@ -169,5 +134,42 @@ extension LoginViewController {
         alert.addAction(ok)
         self.presentViewController(alert, animated: true, completion: nil)
     }
+}
+
+// Mark: - Keyboard Methods
+extension LoginViewController {
+    func subscribeToKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func unsubscribeFromKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        
+        if keyboardAdjusted == false {
+            lastKeyboardOffset = getKeyboardHeight(notification) / 2
+            self.view.superview?.frame.origin.y -= lastKeyboardOffset
+            keyboardAdjusted = true
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        
+        if keyboardAdjusted == true {
+            self.view.superview?.frame.origin.y += lastKeyboardOffset
+            keyboardAdjusted = false
+        }
+    }
+    
+    func getKeyboardHeight(notification: NSNotification) -> CGFloat {
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+        return keyboardSize.CGRectValue().height
+    }
+    
+
 }
 
