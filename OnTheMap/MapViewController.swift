@@ -13,6 +13,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     
+    @IBOutlet weak var logoutButton: UIBarButtonItem!
+    
+    
     var annotations = [MKPointAnnotation]()
     
     override func viewDidLoad() {
@@ -27,6 +30,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func logOutButtonAction(sender: UIBarButtonItem) {
+        logoutButton.enabled = false
         UdacityClient.sharedInstance().deleteSession(){ (success, id, errorString) in
             if success {
                 print("success: ", success)
@@ -36,6 +40,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 })
             } else {
                 print("errorString: ", errorString)
+                dispatch_async(dispatch_get_main_queue(),{
+                    self.logoutButton.enabled = true
+                })
             }
         }
     }

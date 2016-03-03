@@ -56,7 +56,6 @@ class PostInformationViewController: UIViewController {
                     self.locationLabel.text = "Enter the URL:"
                     self.activityView.hidden = true
                 })
-                print("placemarks: ", placemarks)
             }
         })
     }
@@ -119,5 +118,4 @@ class PostInformationViewController: UIViewController {
         }
         return regions.first
     }
-    
 }

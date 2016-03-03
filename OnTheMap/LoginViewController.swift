@@ -14,6 +14,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var debugLabel: UILabel!
     
+    @IBOutlet weak var logInButton: UIButton!
+    
     // Handling Taps
     var tapRecognizer: UITapGestureRecognizer? = nil
 
@@ -48,13 +50,14 @@ class LoginViewController: UIViewController {
 
         let username = self.usernameTextField!.text!
         let password = self.passwordTextField!.text!
-
         
         if usernameTextField!.text!.isEmpty {
             debugLabel.text = "Please enter your email."
         } else if passwordTextField!.text!.isEmpty {
             debugLabel.text = "Please enter your password."
         } else {
+            logInButton.enabled = false
+            logInButton.alpha = 0.5
         UdacityClient.sharedInstance().getSessionID(username, password: password) { (success, sessionID, errorString) in
                 if success {
                     print("sessionID: ", UdacityClient.sharedInstance().sessionID!)
@@ -65,11 +68,15 @@ class LoginViewController: UIViewController {
                             print("poststudentInfo lastName:", PostStudentInfo.sharedInstance().lastName)
                             dispatch_async(dispatch_get_main_queue(),{
                                 self.completeLogin()
+                                self.logInButton.enabled = true
+                                self.logInButton.alpha = 1
                             })
                         } else {
                             print("errorString: ", errorString)
                             dispatch_async(dispatch_get_main_queue(),{
                                 self.showAlertView(errorString!)
+                                self.logInButton.enabled = true
+                                self.logInButton.alpha = 1
                             })
                         }
                     }
@@ -77,6 +84,8 @@ class LoginViewController: UIViewController {
                     print("errorString: ", errorString)
                     dispatch_async(dispatch_get_main_queue(),{
                         self.showAlertView(errorString!)
+                        self.logInButton.enabled = true
+                        self.logInButton.alpha = 1
                     })
                 }
         }

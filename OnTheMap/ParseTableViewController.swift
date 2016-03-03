@@ -11,6 +11,9 @@ import UIKit
 class ParseTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var logoutButton: UIBarButtonItem!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

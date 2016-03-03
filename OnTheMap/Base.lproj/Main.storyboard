@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="t0A-b2-pYW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -103,6 +103,7 @@
                     </view>
                     <connections>
                         <outlet property="debugLabel" destination="oI5-cC-NbN" id="RUb-9P-c5s"/>
+                        <outlet property="logInButton" destination="qXl-sl-vE4" id="Rue-mB-FdP"/>
                         <outlet property="passwordTextField" destination="AtO-IT-SrS" id="LHS-Mc-sCi"/>
                         <outlet property="usernameTextField" destination="A1I-Lu-URS" id="RLB-ER-pqI"/>
                     </connections>
@@ -158,6 +159,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="logoutButton" destination="nc2-cy-VXK" id="YNg-qD-zUo"/>
                         <outlet property="mapView" destination="tuj-8Z-KW0" id="vtf-9U-pSa"/>
                     </connections>
                 </viewController>
@@ -178,10 +180,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HXa-Mn-lYq">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="parseCell" textLabel="Qrg-GM-3zp" detailTextLabel="UQw-z4-sd7" style="IBUITableViewCellStyleSubtitle" id="kXM-JQ-j9X">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="parseCell" textLabel="Qrg-GM-3zp" detailTextLabel="UQw-z4-sd7" imageView="5mv-Rw-aNH" style="IBUITableViewCellStyleSubtitle" id="kXM-JQ-j9X">
                                         <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kXM-JQ-j9X" id="FHo-5D-mh6">
@@ -189,19 +191,23 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Qrg-GM-3zp">
-                                                    <rect key="frame" x="15" y="6" width="31.5" height="19.5"/>
+                                                    <rect key="frame" x="62" y="6" width="31.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UQw-z4-sd7">
-                                                    <rect key="frame" x="15" y="25.5" width="40.5" height="13.5"/>
+                                                    <rect key="frame" x="62" y="25.5" width="40.5" height="13.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="pin" id="5mv-Rw-aNH">
+                                                    <rect key="frame" x="15" y="5" width="32" height="32"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -214,10 +220,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="dMY-RF-rwN" firstAttribute="top" secondItem="HXa-Mn-lYq" secondAttribute="bottom" id="NZY-ac-4V2"/>
-                            <constraint firstItem="HXa-Mn-lYq" firstAttribute="leading" secondItem="IU9-VG-G8T" secondAttribute="leading" id="X1b-p0-tHf"/>
-                            <constraint firstItem="HXa-Mn-lYq" firstAttribute="top" secondItem="CX4-Cc-SLO" secondAttribute="bottom" id="dJU-3z-yAX"/>
-                            <constraint firstAttribute="trailing" secondItem="HXa-Mn-lYq" secondAttribute="trailing" id="sSa-E9-C75"/>
+                            <constraint firstItem="HXa-Mn-lYq" firstAttribute="leading" secondItem="IU9-VG-G8T" secondAttribute="leading" id="9aJ-6c-LaX"/>
+                            <constraint firstItem="HXa-Mn-lYq" firstAttribute="top" secondItem="IU9-VG-G8T" secondAttribute="top" id="jDl-q8-Zo8"/>
+                            <constraint firstItem="dMY-RF-rwN" firstAttribute="top" secondItem="HXa-Mn-lYq" secondAttribute="bottom" id="v9B-8q-N71"/>
+                            <constraint firstAttribute="trailing" secondItem="HXa-Mn-lYq" secondAttribute="trailing" id="vlu-Ec-0Yh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="On The Map" id="gtJ-gB-as4">
@@ -240,6 +246,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="logoutButton" destination="Qab-dV-gVC" id="Whf-3N-dOl"/>
                         <outlet property="tableView" destination="HXa-Mn-lYq" id="20F-HC-GxE"/>
                     </connections>
                 </viewController>
@@ -373,7 +380,7 @@
         <scene sceneID="odB-Gz-fu4">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RBQ-aj-gZ3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Map" id="xdm-JZ-8z5"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="map" id="xdm-JZ-8z5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RTC-yZ-qw4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -392,7 +399,7 @@
         <scene sceneID="txY-gF-pkT">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tlD-e7-b1o" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="List" id="Gtw-No-FMw"/>
+                    <tabBarItem key="tabBarItem" title="List" image="list" id="Gtw-No-FMw"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="x0O-yG-2rr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -427,6 +434,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="list" width="32" height="32"/>
+        <image name="map" width="32" height="32"/>
         <image name="pin" width="32" height="32"/>
         <image name="udacity" width="256" height="256"/>
     </resources>
