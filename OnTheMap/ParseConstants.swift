@@ -30,6 +30,7 @@ extension ParseClient {
         
         // MARK: GetUserData
         static let studentLocation = "StudentLocation"
+        static let Order: String = "?order=-updatedAt"
     }
     
     // MARK: Parameter Keys

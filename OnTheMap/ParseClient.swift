@@ -36,7 +36,7 @@ class ParseClient: NSObject {
 //        mutableParameters[ParseClient.Constants.ApiKey] = Constants.ApiKey
         
         /* 2/3. Build the URL and configure the request */
-        let urlString = ParseClient.Constants.BaseURLSecure + method + ParseClient.escapedParameters(mutableParameters)
+        let urlString = ParseClient.Constants.BaseURLSecure + method + ParseClient.Methods.Order + ParseClient.escapedParameters(mutableParameters)
         let url = NSURL(string: urlString)!
         let request = NSMutableURLRequest(URL: url)
         
