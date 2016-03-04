@@ -150,7 +150,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func showAlertView(message: String) {
-        let alert = UIAlertController(title: "Login Failed", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: message, message: nil, preferredStyle: UIAlertControllerStyle.Alert)
         let dismiss = UIAlertAction (title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil)
         alert.addAction(dismiss)
         self.presentViewController(alert, animated: true, completion: nil)
