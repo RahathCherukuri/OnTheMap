@@ -14,7 +14,6 @@ class ParseTableViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var logoutButton: UIBarButtonItem!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         print("viewDidload")
@@ -37,6 +36,9 @@ class ParseTableViewController: UIViewController, UITableViewDelegate, UITableVi
                 })
             } else {
                 print("errorString: ", errorString)
+                dispatch_async(dispatch_get_main_queue(),{
+                    self.showAlertView(errorString!)
+                })
             }
         }
     }
@@ -74,11 +76,13 @@ class ParseTableViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let app = UIApplication.sharedApplication()
-        print(StudentInfo.studentInfo[indexPath.row])
         let toOpen = StudentInfo.studentInfo[indexPath.row].mediaURL
         guard let url = NSURL(string:toOpen) as NSURL? else {
+            print("showAlertView Invalid Link")
+            showAlertView("Invalid Link")
             return
         }
+        print("url: url")
         app.openURL(url)
     }
     
@@ -92,8 +96,18 @@ class ParseTableViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
             } else {
                 print("errorString: ", errorString)
+                dispatch_async(dispatch_get_main_queue(),{
+                    self.showAlertView(errorString!)
+                })
             }
         }
+    }
+    
+    func showAlertView(message: String) {
+        let alert = UIAlertController(title: "Login Failed", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let dismiss = UIAlertAction (title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil)
+        alert.addAction(dismiss)
+        self.presentViewController(alert, animated: true, completion: nil)
     }
  
 }

@@ -26,7 +26,7 @@ extension UdacityClient {
                 /* 3. Send the desired value(s) to completion handler */
                 if let error = error {
                     print("error: ", error)
-                    completionHandler(success: false, sessionID: nil, errorString: "Login Failed (SessionID).")
+                    completionHandler(success: false, sessionID: nil, errorString: "Please check your internet connection and try again.")
                 } else {
                     if let session = JSONResult[UdacityClient.JSONResponseKeys.Session] as? NSDictionary,
                         let account = JSONResult[UdacityClient.JSONResponseKeys.Account] as? NSDictionary
@@ -39,11 +39,11 @@ extension UdacityClient {
                             completionHandler(success: true, sessionID: id, errorString: nil)
                         } else {
                             print("Could not find \(UdacityClient.JSONResponseKeys.id) or \(UdacityClient.JSONResponseKeys.Key) in \(JSONResult)")
-                            completionHandler(success: false, sessionID: nil, errorString: "Login Failed (SessionID).")
+                            completionHandler(success: false, sessionID: nil, errorString: "Incorrect Username or Password")
                         }
                     } else {
                         print("Could not find \(UdacityClient.JSONResponseKeys.Session) in \(JSONResult)")
-                        completionHandler(success: false, sessionID: nil, errorString: "Login Failed (SessionID).")
+                        completionHandler(success: false, sessionID: nil, errorString: "Incorrect Username or Password")
                     }
                 }
         }
@@ -57,7 +57,7 @@ extension UdacityClient {
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
                 print("error: ", error)
-                completionHandler(success: false, sessionID: nil, errorString: "LogOut session Failed.")
+                completionHandler(success: false, sessionID: nil, errorString: "Please check your internet connection and try again.")
             } else {
                 if let session = JSONResult[UdacityClient.JSONResponseKeys.Session] as? NSDictionary {
                     if let id = session[UdacityClient.JSONResponseKeys.id] as? String {
@@ -65,11 +65,11 @@ extension UdacityClient {
                         completionHandler(success: true, sessionID: id, errorString: nil)
                     } else {
                         print("Could not find \(UdacityClient.JSONResponseKeys.id) in \(JSONResult)")
-                        completionHandler(success: false, sessionID: nil, errorString: "LogOut session Failed.")
+                        completionHandler(success: false, sessionID: nil, errorString: "Server error try again later.")
                     }
                 } else {
                     print("Could not find \(UdacityClient.JSONResponseKeys.Session) in \(JSONResult)")
-                    completionHandler(success: false, sessionID: nil, errorString: "LogOut session Failed.")
+                    completionHandler(success: false, sessionID: nil, errorString: "Server error try again later.")
                 }
             }
         }
@@ -84,7 +84,7 @@ extension UdacityClient {
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
                 print("error: ", error)
-                completionHandler(success: false, errorString: "Couldnt get user's data.")
+                completionHandler(success: false, errorString: "Please check your internet connection and try again.")
             } else {
                 if let user = JSONResult[UdacityClient.JSONResponseKeys.User] as? NSDictionary {
                     if let firstname = user[UdacityClient.JSONResponseKeys.FirstName] as? String,
@@ -95,11 +95,11 @@ extension UdacityClient {
                         completionHandler(success: true, errorString: nil)
                     } else {
                         print("Could not find \(UdacityClient.JSONResponseKeys.id) in \(JSONResult)")
-                        completionHandler(success: false, errorString: "Couldnt get user's data.")
+                        completionHandler(success: false, errorString: "Server error try again later.")
                     }
                 } else {
                     print("Could not find \(UdacityClient.JSONResponseKeys.Session) in \(JSONResult)")
-                    completionHandler(success: false, errorString: "Couldnt get user's data.")
+                    completionHandler(success: false, errorString: "Server error try again later.")
                 }
             }
         }

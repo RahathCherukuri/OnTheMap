@@ -52,41 +52,20 @@ class UdacityClient : NSObject {
         
         /* 4. Make the request */
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
-            
-            /* GUARD: Was there an error? */
-            guard (error == nil) else {
-                if ((error?.code) != nil && error?.code == -1009) {
-                    print("No Network Connection")
-                } else {
-                    print("There was an error with your request: \(error)")
+
+            if let _ = error {
+                completionHandler(result: nil, error: error)
+            } else {
+                /* GUARD: Was there any data returned? */
+                guard let data = data else {
+                    completionHandler(result: nil, error: error)
+                    return
                 }
-                return
+                
+                let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
+                /* 5/6. Parse the data and use the data (happens in completion handler) */
+                UdacityClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
             }
-            
-            /* GUARD: Did we get a successful 2XX response? */
-            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
-                if let response = response as? NSHTTPURLResponse {
-                    if ((response.statusCode) == 403) {
-                        print("Authentication issue")
-                    }
-                    print("Your request returned an invalid response! Status code: \(response.statusCode)!")
-                } else if let response = response {
-                    print("Your request returned an invalid response! Response: \(response)!")
-                } else {
-                    print("Your request returned an invalid response!")
-                }
-                return
-            }
-            
-            /* GUARD: Was there any data returned? */
-            guard let data = data else {
-                print("No data was returned by the request!")
-                return
-            }
-            
-            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
-            /* 5/6. Parse the data and use the data (happens in completion handler) */
-            UdacityClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
         }
         
         /* 7. Start the request */
@@ -123,33 +102,19 @@ class UdacityClient : NSObject {
         /* 4. Make the request */
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
             
-            /* GUARD: Was there an error? */
-            guard (error == nil) else {
-                print("There was an error with your request: \(error)")
-                return
-            }
-            
-            /* GUARD: Did we get a successful 2XX response? */
-            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
-                if let response = response as? NSHTTPURLResponse {
-                    print("Your request returned an invalid response! Status code: \(response.statusCode)!")
-                } else if let response = response {
-                    print("Your request returned an invalid response! Response: \(response)!")
-                } else {
-                    print("Your request returned an invalid response!")
-                }
-                return
-            }
-            
+            if let _ = error {
+                completionHandler(result: nil, error: error)
+            } else {
             /* GUARD: Was there any data returned? */
-            guard let data = data else {
-                print("No data was returned by the request!")
-                return
+                guard let data = data else {
+                    completionHandler(result: nil, error: error)
+                    return
+                }
+                
+                let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
+                /* 5/6. Parse the data and use the data (happens in completion handler) */
+                UdacityClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
             }
-            
-            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
-            /* 5/6. Parse the data and use the data (happens in completion handler) */
-            UdacityClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
         }
         
         /* 7. Start the request */
@@ -173,33 +138,19 @@ class UdacityClient : NSObject {
         /* 4. Make the request */
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
             
-            /* GUARD: Was there an error? */
-            guard (error == nil) else {
-                print("There was an error with your request: \(error)")
-                return
-            }
-            
-            /* GUARD: Did we get a successful 2XX response? */
-            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
-                if let response = response as? NSHTTPURLResponse {
-                    print("Your request returned an invalid response! Status code: \(response.statusCode)!")
-                } else if let response = response {
-                    print("Your request returned an invalid response! Response: \(response)!")
-                } else {
-                    print("Your request returned an invalid response!")
-                }
-                return
-            }
-            
+            if let _ = error {
+                completionHandler(result: nil, error: error)
+            } else {
             /* GUARD: Was there any data returned? */
             guard let data = data else {
-                print("No data was returned by the request!")
+                completionHandler(result: nil, error: error)
                 return
             }
             
             let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
             /* 5/6. Parse the data and use the data (happens in completion handler) */
             UdacityClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
+            }
         }
         
         /* 7. Start the request */

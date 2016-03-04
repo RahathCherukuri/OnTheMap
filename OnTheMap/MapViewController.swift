@@ -42,6 +42,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 print("errorString: ", errorString)
                 dispatch_async(dispatch_get_main_queue(),{
                     self.logoutButton.enabled = true
+                    self.showAlertView(errorString!)
                 })
             }
         }
@@ -110,6 +111,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
             } else {
                 print("errorString: ", errorString)
+                dispatch_async(dispatch_get_main_queue(),{
+                    self.showAlertView(errorString!)
+                })
             }
         }
     }
@@ -146,11 +150,19 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             let app = UIApplication.sharedApplication()
             if let toOpen = view.annotation?.subtitle! {
                 guard let url = NSURL(string:toOpen) as NSURL? else {
+                    self.showAlertView("Invalid Link")
                     return
                 }
                 app.openURL(url)
             }
         }
+    }
+    
+    func showAlertView(message: String) {
+        let alert = UIAlertController(title: "Login Failed", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let dismiss = UIAlertAction (title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil)
+        alert.addAction(dismiss)
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     //    func mapView(mapView: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {

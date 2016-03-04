@@ -50,8 +50,11 @@ class LoginViewController: UIViewController {
     // MARK: Actions
     @IBAction func loginButton(sender: AnyObject) {
         
-        let username = self.usernameTextField!.text!
-        let password = self.passwordTextField!.text!
+//        let username = self.usernameTextField!.text!
+//        let password = self.passwordTextField!.text!
+        
+        let username = "rcheruku@syr.edu"
+        let password = "amanteddu"
 
         if usernameTextField!.text!.isEmpty {
             debugLabel.text = "Please enter your email."
@@ -130,8 +133,8 @@ class LoginViewController: UIViewController {
     
     func showAlertView(message: String) {
         let alert = UIAlertController(title: "Login Failed", message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        let ok = UIAlertAction (title: "OK", style: UIAlertActionStyle.Default, handler: nil)
-        alert.addAction(ok)
+        let dismiss = UIAlertAction (title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil)
+        alert.addAction(dismiss)
         self.presentViewController(alert, animated: true, completion: nil)
     }
 }

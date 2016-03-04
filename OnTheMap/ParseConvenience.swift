@@ -21,13 +21,13 @@ extension ParseClient {
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
                 print(error)
-                completionHandler(success: false, results: nil, errorString: "Student Information Retreival Failed")
+                completionHandler(success: false, results: nil, errorString: "Please check your internet connection and try again.")
             } else {
                 if let results = JSONResult[ParseClient.JSONResponseKeys.Results] as? [[String: AnyObject]] {
                     completionHandler(success: true, results: results, errorString: nil)
                 } else {
                     print("Could not find \(ParseClient.JSONResponseKeys.Results) in \(JSONResult)")
-                    completionHandler(success: false, results: nil, errorString: "Student Information Retreival Failed.")
+                    completionHandler(success: false, results: nil, errorString: "Server error try again later.")
                 }
             }
         }
@@ -55,7 +55,7 @@ extension ParseClient {
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
                 print("error: ", error)
-                completionHandler(success: false, objectId: nil, createdAt: nil, errorString: "Posting student information failed!")
+                completionHandler(success: false, objectId: nil, createdAt: nil, errorString: "Please check your internet connection and try again.")
             } else {
                 if let objectId = JSONResult[ParseClient.JSONResponseKeys.ObjectID] as? String,
                     let createdAt = JSONResult[ParseClient.JSONResponseKeys.CreatedAt] as? String
@@ -63,7 +63,7 @@ extension ParseClient {
                     completionHandler(success: true, objectId: objectId, createdAt: createdAt, errorString: nil)
                 } else {
                     print("Could not find \(ParseClient.JSONResponseKeys.ObjectID) or \(ParseClient.JSONResponseKeys.CreatedAt) in \(JSONResult)")
-                    completionHandler(success: false, objectId: nil, createdAt: nil, errorString: "Posting student information failed!")
+                    completionHandler(success: false, objectId: nil, createdAt: nil, errorString: "Server error try again later.")
                 }
             }
         }
