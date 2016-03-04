@@ -33,7 +33,6 @@ class PostInformationViewController: UIViewController {
     var keyboardAdjusted = false
     var lastKeyboardOffset: CGFloat = 0.0
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         tapRecognizer = UITapGestureRecognizer(target: self, action: "handleSingleTap:")
@@ -80,6 +79,9 @@ class PostInformationViewController: UIViewController {
         geocoder.geocodeAddressString(location, completionHandler: {(placemarks: [CLPlacemark]?, error: NSError?) -> Void in
             if error != nil {
                 print("Its an error")
+                dispatch_async(dispatch_get_main_queue(),{
+                    self.showAlertView("Please check your internet connection.")
+                })
             } else {
                 dispatch_async(dispatch_get_main_queue(),{
                     self.addUserLocation(placemarks!)
@@ -105,6 +107,9 @@ class PostInformationViewController: UIViewController {
                     })
                 } else {
                     print("errorString: ", errorString)
+                    dispatch_async(dispatch_get_main_queue(),{
+                        self.showAlertView(errorString!)
+                    })
                 }
 
             }
@@ -161,6 +166,13 @@ class PostInformationViewController: UIViewController {
     
     func handleSingleTap(recognizer: UITapGestureRecognizer) {
         self.view.endEditing(true)
+    }
+    
+    func showAlertView(message: String) {
+        let alert = UIAlertController(title: "Login Failed", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let dismiss = UIAlertAction (title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil)
+        alert.addAction(dismiss)
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 }
 
