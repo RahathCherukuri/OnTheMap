@@ -51,8 +51,10 @@ extension UdacityClient {
     
     func deleteSession(completionHandler: (success: Bool, sessionID: String?, errorString: String?) -> Void) {
         
+        /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
         let parameters: [String : AnyObject] = [ : ]
         let method: String = Methods.AuthenticationSession
+        /* 2. Make the request */
         taskForDeleteMethod(method, parameters: parameters){(JSONResult, error) in
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
@@ -77,9 +79,11 @@ extension UdacityClient {
     
     
     func getUserData(completionHandler: (success: Bool, errorString: String?) -> Void) {
+        
+        /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
         let parameters: [String : AnyObject] = [ : ]
         let method: String = Methods.getUserData
-        
+        /* 2. Make the request */
         taskForGETMethod(method, parameters: parameters) {(JSONResult, error) in
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {

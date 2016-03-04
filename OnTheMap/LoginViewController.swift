@@ -50,11 +50,8 @@ class LoginViewController: UIViewController {
     // MARK: Actions
     @IBAction func loginButton(sender: AnyObject) {
         
-//        let username = self.usernameTextField!.text!
-//        let password = self.passwordTextField!.text!
-        
-        let username = "rcheruku@syr.edu"
-        let password = "amanteddu"
+        let username = self.usernameTextField!.text!
+        let password = self.passwordTextField!.text!
 
         if usernameTextField!.text!.isEmpty {
             debugLabel.text = "Please enter your email."
@@ -65,19 +62,14 @@ class LoginViewController: UIViewController {
             logInButton.alpha = 0.5
         UdacityClient.sharedInstance().getSessionID(username, password: password) { (success, sessionID, errorString) in
                 if success {
-                    print("sessionID: ", UdacityClient.sharedInstance().sessionID!)
                     UdacityClient.sharedInstance().getUserData() {(success, errorString) in
                         if success {
-                            print("In getUserData")
-                            print("poststudentInfo firstname:", PostStudentInfo.sharedInstance().firstName)
-                            print("poststudentInfo lastName:", PostStudentInfo.sharedInstance().lastName)
                             dispatch_async(dispatch_get_main_queue(),{
                                 self.completeLogin()
                                 self.logInButton.enabled = true
                                 self.logInButton.alpha = 1
                             })
                         } else {
-                            print("errorString: ", errorString)
                             dispatch_async(dispatch_get_main_queue(),{
                                 self.showAlertView(errorString!)
                                 self.logInButton.enabled = true
@@ -86,7 +78,6 @@ class LoginViewController: UIViewController {
                         }
                     }
                 } else {
-                    print("errorString: ", errorString)
                     dispatch_async(dispatch_get_main_queue(),{
                         self.showAlertView(errorString!)
                         self.logInButton.enabled = true

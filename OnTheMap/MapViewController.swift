@@ -15,16 +15,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var logoutButton: UIBarButtonItem!
     
-    
     var annotations = [MKPointAnnotation]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("viewDidload")
     }
     
     override func viewWillAppear(animated: Bool) {
-        print("viewWillAppear")
         super.viewWillAppear(animated)
         getStudentInformation()
     }
@@ -33,13 +30,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         logoutButton.enabled = false
         UdacityClient.sharedInstance().deleteSession(){ (success, id, errorString) in
             if success {
-                print("success: ", success)
-                print("id: ", id)
                 dispatch_async(dispatch_get_main_queue(),{
                     self.dismissViewControllerAnimated(true, completion: nil)
                 })
             } else {
-                print("errorString: ", errorString)
                 dispatch_async(dispatch_get_main_queue(),{
                     self.logoutButton.enabled = true
                     self.showAlertView(errorString!)
@@ -60,7 +54,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func populateStudentInfoOntheMap() {
         
         let studentInfo = StudentInfo.studentInfo
-        print("mapViewCount: ", studentInfo.count)
         
         // Remove the annotations .
         if(annotations.count != 0) {
@@ -103,14 +96,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func getStudentInformation() {
         ParseClient.sharedInstance().getstudentInformation () { (success, results, errorString) in
             if success {
-                print("success: ", success)
                 ParseClient.sharedInstance().parseResultsAndSaveInStudentInfo(results!)
                 dispatch_async(dispatch_get_main_queue(),{
                     self.populateStudentInfoOntheMap()
                 })
 
             } else {
-                print("errorString: ", errorString)
                 dispatch_async(dispatch_get_main_queue(),{
                     self.showAlertView(errorString!)
                 })
@@ -164,13 +155,5 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         alert.addAction(dismiss)
         self.presentViewController(alert, animated: true, completion: nil)
     }
-    
-    //    func mapView(mapView: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-    //
-    //        if control == annotationView.rightCalloutAccessoryView {
-    //            let app = UIApplication.sharedApplication()
-    //            app.openURL(NSURL(string: annotationView.annotation.subtitle))
-    //        }
-    //    }
     
 }

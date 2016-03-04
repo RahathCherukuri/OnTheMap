@@ -14,9 +14,6 @@ class ParseClient: NSObject {
     /* Shared session */
     var session: NSURLSession
     
-    /* Configuration object */
-    //    var config = TMDBConfig()
-    
     /* Authentication state */
     var sessionID : String? = nil
     

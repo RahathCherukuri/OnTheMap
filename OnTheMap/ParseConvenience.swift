@@ -12,11 +12,12 @@ import Foundation
 
 extension ParseClient {
     
-    //TODO: Save UniqueKey, firstname and lastname into postStudentInfo
     func getstudentInformation(completionHandler: (success: Bool, results: [[String: AnyObject]]?, errorString: String?) -> Void) {
+
+        /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
         let method: String = ParseClient.Methods.studentLocation
         let parameters: [String: AnyObject] = [ : ]
-        
+        /* 2. Make the request */
         taskForGETMethod(method , parameters: parameters){ (JSONResult, error) in
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
@@ -35,10 +36,11 @@ extension ParseClient {
     
     
     func postStudentInformation(completionHandler: (success: Bool, objectId: String?, createdAt: String?, errorString: String?) -> Void) {
+        
+        /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
         let parameters: [String: AnyObject] = [ : ]
         let method: String = ParseClient.Methods.studentLocation
         
-        // TODO: Add uniquekey to pass in the jsonBody
         let jsonBody: [String: AnyObject] = [
         "uniqueKey": UdacityClient.sharedInstance().key!,
         "firstName": PostStudentInfo.sharedInstance().firstName,
@@ -48,8 +50,7 @@ extension ParseClient {
         "latitude": PostStudentInfo.sharedInstance().latitude,
         "longitude": PostStudentInfo.sharedInstance().longitude
         ]
-        print("In postStudentInformation: ", jsonBody)
-        
+
         /* 2. Make the request */
         taskForPOSTMethod(method, parameters: parameters, jsonBody: jsonBody) { (JSONResult, error) in
             /* 3. Send the desired value(s) to completion handler */

@@ -16,11 +16,9 @@ class ParseTableViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("viewDidload")
     }
     
     override func viewWillAppear(animated: Bool) {
-        print("viewWillAppear")
         super.viewWillAppear(animated)
         getStudentInformation()
     }
@@ -29,13 +27,10 @@ class ParseTableViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBAction func logOutButtonAction(sender: UIBarButtonItem) {
         UdacityClient.sharedInstance().deleteSession(){ (success, id, errorString) in
             if success {
-                print("success: ", success)
-                print("id: ", id)
                 dispatch_async(dispatch_get_main_queue(),{
                     self.dismissViewControllerAnimated(true, completion: nil)
                 })
             } else {
-                print("errorString: ", errorString)
                 dispatch_async(dispatch_get_main_queue(),{
                     self.showAlertView(errorString!)
                 })
@@ -48,6 +43,7 @@ class ParseTableViewController: UIViewController, UITableViewDelegate, UITableVi
         let controller = self.storyboard?.instantiateViewControllerWithIdentifier("PostInformationViewController") as! PostInformationViewController
         self.presentViewController(controller, animated: true, completion: nil)
     }
+    
     @IBAction func refreshButtonAction(sender: UIBarButtonItem) {
         getStudentInformation()
     }
@@ -56,7 +52,6 @@ class ParseTableViewController: UIViewController, UITableViewDelegate, UITableVi
         if StudentInfo.studentInfo.count == 0 {
             getStudentInformation()
         }
-        print(StudentInfo.studentInfo.count)
         return StudentInfo.studentInfo.count
     }
     
@@ -78,24 +73,20 @@ class ParseTableViewController: UIViewController, UITableViewDelegate, UITableVi
         let app = UIApplication.sharedApplication()
         let toOpen = StudentInfo.studentInfo[indexPath.row].mediaURL
         guard let url = NSURL(string:toOpen) as NSURL? else {
-            print("showAlertView Invalid Link")
             showAlertView("Invalid Link")
             return
         }
-        print("url: url")
         app.openURL(url)
     }
     
     func getStudentInformation() {
         ParseClient.sharedInstance().getstudentInformation () { (success, results, errorString) in
             if success {
-                print("success: ", success)
                 ParseClient.sharedInstance().parseResultsAndSaveInStudentInfo(results!)
                 dispatch_async(dispatch_get_main_queue()) {
                     self.tableView.reloadData()
                 }
             } else {
-                print("errorString: ", errorString)
                 dispatch_async(dispatch_get_main_queue(),{
                     self.showAlertView(errorString!)
                 })

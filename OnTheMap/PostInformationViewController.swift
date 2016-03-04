@@ -29,6 +29,7 @@ class PostInformationViewController: UIViewController {
     
     // Handling Taps
     var tapRecognizer: UITapGestureRecognizer? = nil
+    
     //Keyboard Notifications
     var keyboardAdjusted = false
     var lastKeyboardOffset: CGFloat = 0.0
@@ -67,6 +68,12 @@ class PostInformationViewController: UIViewController {
         
         let location = locationTextField.text!
         
+        if locationTextField!.text!.isEmpty {
+            dispatch_async(dispatch_get_main_queue(),{
+                self.showAlertView("Please enter Location")
+            })
+        }
+        
         bottomView.alpha = 0.3
         locationTextField.hidden = true
         findOnTheMapButton.hidden = true
@@ -78,7 +85,6 @@ class PostInformationViewController: UIViewController {
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(location, completionHandler: {(placemarks: [CLPlacemark]?, error: NSError?) -> Void in
             if error != nil {
-                print("Its an error")
                 dispatch_async(dispatch_get_main_queue(),{
                     self.showAlertView("Please check your internet connection.")
                 })
@@ -95,18 +101,17 @@ class PostInformationViewController: UIViewController {
     @IBAction func submitButtonPressed(sender: UIButton) {
         if linkTextField!.text!.isEmpty {
             print("linkTextField is Empty!!")
+            dispatch_async(dispatch_get_main_queue(),{
+                self.showAlertView("Please enter URL")
+            })
         } else {
             PostStudentInfo.sharedInstance().mediaURL = linkTextField!.text!
             ParseClient.sharedInstance().postStudentInformation() { (success, objectID, createdAt, errorString) in
                 if success {
-                    print("success: ", success)
-                    print("objectID: ", objectID)
-                    print("createdAt: ", createdAt)
                     dispatch_async(dispatch_get_main_queue(),{
                         self.dismissViewControllerAnimated(true, completion: nil)
                     })
                 } else {
-                    print("errorString: ", errorString)
                     dispatch_async(dispatch_get_main_queue(),{
                         self.showAlertView(errorString!)
                     })
