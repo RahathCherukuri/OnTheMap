@@ -14,10 +14,6 @@ class ParseTableViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var logoutButton: UIBarButtonItem!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         getStudentInformation()
@@ -40,8 +36,8 @@ class ParseTableViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func postInformation(sender: UIBarButtonItem) {
         
-        let controller = self.storyboard?.instantiateViewControllerWithIdentifier("PostInformationViewController") as! PostInformationViewController
-        self.presentViewController(controller, animated: true, completion: nil)
+        let controller = storyboard?.instantiateViewControllerWithIdentifier("PostInformationViewController") as! PostInformationViewController
+        presentViewController(controller, animated: true, completion: nil)
     }
     
     @IBAction func refreshButtonAction(sender: UIBarButtonItem) {
@@ -98,7 +94,7 @@ class ParseTableViewController: UIViewController, UITableViewDelegate, UITableVi
         let alert = UIAlertController(title: message, message: nil, preferredStyle: UIAlertControllerStyle.Alert)
         let dismiss = UIAlertAction (title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil)
         alert.addAction(dismiss)
-        self.presentViewController(alert, animated: true, completion: nil)
+        presentViewController(alert, animated: true, completion: nil)
     }
  
 }

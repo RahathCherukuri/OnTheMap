@@ -50,8 +50,8 @@ class LoginViewController: UIViewController {
     // MARK: Actions
     @IBAction func loginButton(sender: AnyObject) {
         
-        let username = self.usernameTextField!.text!
-        let password = self.passwordTextField!.text!
+        let username = usernameTextField!.text!
+        let password = passwordTextField!.text!
 
         if usernameTextField!.text!.isEmpty {
             debugLabel.text = "Please enter your email."
@@ -104,29 +104,29 @@ class LoginViewController: UIViewController {
     }
     
     func openTabBarController() {
-        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
-        self.presentViewController(controller, animated: true, completion: nil)
+        let controller = storyboard!.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
+        presentViewController(controller, animated: true, completion: nil)
     }
     
     // MARK: Show/Hide Keyboard
     
     func addKeyboardDismissRecognizer() {
-        self.view.addGestureRecognizer(tapRecognizer!)
+        view.addGestureRecognizer(tapRecognizer!)
     }
     
     func removeKeyboardDismissRecognizer() {
-        self.view.removeGestureRecognizer(tapRecognizer!)
+        view.removeGestureRecognizer(tapRecognizer!)
     }
 
     func handleSingleTap(recognizer: UITapGestureRecognizer) {
-        self.view.endEditing(true)
+        view.endEditing(true)
     }
     
     func showAlertView(message: String) {
         let alert = UIAlertController(title: "Login Failed", message: message, preferredStyle: UIAlertControllerStyle.Alert)
         let dismiss = UIAlertAction (title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil)
         alert.addAction(dismiss)
-        self.presentViewController(alert, animated: true, completion: nil)
+        presentViewController(alert, animated: true, completion: nil)
     }
 }
 
@@ -145,7 +145,7 @@ extension LoginViewController {
         
         if keyboardAdjusted == false {
             lastKeyboardOffset = getKeyboardHeight(notification) / 2
-            self.view.superview?.frame.origin.y -= lastKeyboardOffset
+            view.superview?.frame.origin.y -= lastKeyboardOffset
             keyboardAdjusted = true
         }
     }
@@ -153,7 +153,7 @@ extension LoginViewController {
     func keyboardWillHide(notification: NSNotification) {
         
         if keyboardAdjusted == true {
-            self.view.superview?.frame.origin.y += lastKeyboardOffset
+            view.superview?.frame.origin.y += lastKeyboardOffset
             keyboardAdjusted = false
         }
     }

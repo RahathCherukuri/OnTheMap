@@ -73,12 +73,15 @@ class PostInformationViewController: UIViewController {
                 self.showAlertView("Please enter Location")
             })
         }
+        activityView.startAnimating()
         activityView.hidden = false
         
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(location, completionHandler: {(placemarks: [CLPlacemark]?, error: NSError?) -> Void in
             if error != nil {
                 dispatch_async(dispatch_get_main_queue(),{
+                    self.activityView.stopAnimating()
+                    self.activityView.hidden = true
                     self.showAlertView("Please check your internet connection.")
                 })
             } else {
@@ -113,11 +116,12 @@ class PostInformationViewController: UIViewController {
     }
     
     @IBAction func cancelButtonPressed(sender: UIButton) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     func setSecondaryView() {
         locationLabel.text = "Enter the URL:"
+        activityView.stopAnimating()
         activityView.hidden = true
         bottomView.alpha = 0.3
         locationTextField.hidden = true
@@ -132,7 +136,7 @@ class PostInformationViewController: UIViewController {
         
         let placemarks = placemarks as! [CLPlacemark]
         var region = MKCoordinateRegion?()
-        region = self.setRegion(placemarks)
+        region = setRegion(placemarks)
 
         
         let annotation = MKPointAnnotation()
@@ -164,22 +168,22 @@ class PostInformationViewController: UIViewController {
     // MARK: Show/Hide Keyboard
     
     func addKeyboardDismissRecognizer() {
-        self.view.addGestureRecognizer(tapRecognizer!)
+        view.addGestureRecognizer(tapRecognizer!)
     }
     
     func removeKeyboardDismissRecognizer() {
-        self.view.removeGestureRecognizer(tapRecognizer!)
+        view.removeGestureRecognizer(tapRecognizer!)
     }
     
     func handleSingleTap(recognizer: UITapGestureRecognizer) {
-        self.view.endEditing(true)
+        view.endEditing(true)
     }
     
     func showAlertView(message: String) {
         let alert = UIAlertController(title: message, message: nil, preferredStyle: UIAlertControllerStyle.Alert)
         let dismiss = UIAlertAction (title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil)
         alert.addAction(dismiss)
-        self.presentViewController(alert, animated: true, completion: nil)
+        presentViewController(alert, animated: true, completion: nil)
     }
 }
 
@@ -198,7 +202,7 @@ extension PostInformationViewController {
         
         if keyboardAdjusted == false {
             lastKeyboardOffset = getKeyboardHeight(notification) / 2
-            self.view.superview?.frame.origin.y -= lastKeyboardOffset
+            view.superview?.frame.origin.y -= lastKeyboardOffset
             keyboardAdjusted = true
         }
     }
@@ -206,7 +210,7 @@ extension PostInformationViewController {
     func keyboardWillHide(notification: NSNotification) {
         
         if keyboardAdjusted == true {
-            self.view.superview?.frame.origin.y += lastKeyboardOffset
+            view.superview?.frame.origin.y += lastKeyboardOffset
             keyboardAdjusted = false
         }
     }

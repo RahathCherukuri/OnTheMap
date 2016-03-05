@@ -43,8 +43,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func postInformation(sender: UIBarButtonItem) {
-        let controller = self.storyboard?.instantiateViewControllerWithIdentifier("PostInformationViewController") as! PostInformationViewController
-        self.presentViewController(controller, animated: true, completion: nil)
+        let controller = storyboard?.instantiateViewControllerWithIdentifier("PostInformationViewController") as! PostInformationViewController
+        presentViewController(controller, animated: true, completion: nil)
     }
     
     @IBAction func refreshButtonAction(sender: UIBarButtonItem) {
@@ -57,7 +57,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         // Remove the annotations .
         if(annotations.count != 0) {
-            self.mapView.removeAnnotations(annotations)
+            mapView.removeAnnotations(annotations)
             annotations = [MKPointAnnotation]()
         }
         
@@ -89,7 +89,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
         
         // When the array is complete, we add the annotations to the map.
-        self.mapView.addAnnotations(annotations)
+        mapView.addAnnotations(annotations)
     }
     
     
@@ -141,7 +141,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             let app = UIApplication.sharedApplication()
             if let toOpen = view.annotation?.subtitle! {
                 guard let url = NSURL(string:toOpen) as NSURL? else {
-                    self.showAlertView("Invalid Link")
+                    showAlertView("Invalid Link")
                     return
                 }
                 app.openURL(url)
@@ -153,7 +153,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         let alert = UIAlertController(title: message, message: nil, preferredStyle: UIAlertControllerStyle.Alert)
         let dismiss = UIAlertAction (title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil)
         alert.addAction(dismiss)
-        self.presentViewController(alert, animated: true, completion: nil)
+        presentViewController(alert, animated: true, completion: nil)
     }
     
 }
