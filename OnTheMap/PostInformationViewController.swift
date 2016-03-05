@@ -73,14 +73,7 @@ class PostInformationViewController: UIViewController {
                 self.showAlertView("Please enter Location")
             })
         }
-        
-        bottomView.alpha = 0.3
-        locationTextField.hidden = true
-        findOnTheMapButton.hidden = true
-        mapView.hidden = false
         activityView.hidden = false
-        linkTextField.hidden = false
-        submitButton.hidden = false
         
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(location, completionHandler: {(placemarks: [CLPlacemark]?, error: NSError?) -> Void in
@@ -91,8 +84,7 @@ class PostInformationViewController: UIViewController {
             } else {
                 dispatch_async(dispatch_get_main_queue(),{
                     self.addUserLocation(placemarks!)
-                    self.locationLabel.text = "Enter the URL:"
-                    self.activityView.hidden = true
+                    self.setSecondaryView()
                 })
             }
         })
@@ -100,7 +92,6 @@ class PostInformationViewController: UIViewController {
     
     @IBAction func submitButtonPressed(sender: UIButton) {
         if linkTextField!.text!.isEmpty {
-            print("linkTextField is Empty!!")
             dispatch_async(dispatch_get_main_queue(),{
                 self.showAlertView("Please enter URL")
             })
@@ -123,6 +114,17 @@ class PostInformationViewController: UIViewController {
     
     @IBAction func cancelButtonPressed(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func setSecondaryView() {
+        locationLabel.text = "Enter the URL:"
+        activityView.hidden = true
+        bottomView.alpha = 0.3
+        locationTextField.hidden = true
+        findOnTheMapButton.hidden = true
+        mapView.hidden = false
+        linkTextField.hidden = false
+        submitButton.hidden = false
     }
     
     // Drops pin on the map for user provided location.
